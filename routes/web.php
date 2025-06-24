@@ -13,7 +13,7 @@ use App\Http\Controllers\BasicController;
 Route::get("/pdf",[BanglaPdfController::class,"showBanglaPdf"])->name("showBanglaPdf");
 
 Route::get('/', function () {
-    return view('admin.dashboard.dashboard');
+    
 });
 
 Route::get("/form", [BasicController::class, "basicForm"])->name("form");
