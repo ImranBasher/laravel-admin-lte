@@ -4,12 +4,12 @@
 
 @section("content")
 
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>Service Categories</h1>
-        <a href="{{ route('admin.service_categories.create') }}" class="btn btn-primary float-right">Add New</a>
+        <a href="{{ route('admin.service_categories.create') }}" class="btn btn-primary float-left">Add New</a>
     </section>
-
+ <br>
     <section class="content">
         <div class="card">
             <div class="card-body p-0">
@@ -58,6 +58,6 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 
 @endsection

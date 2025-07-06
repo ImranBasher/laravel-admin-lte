@@ -3,12 +3,12 @@
 @section('title', 'Customer Reviews')
 
 @section('content')
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>Customer Reviews</h1>
-        <a href="{{ route('admin.customer_reviews.create') }}" class="btn btn-primary float-right">Add New</a>
+        <a href="{{ route('admin.customer_reviews.create') }}" class="btn btn-primary float-left">Add New</a>
     </section>
-
+ <br>
     <section class="content">
         <div class="card">
             <div class="card-body p-0">
@@ -57,5 +57,5 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 @endsection

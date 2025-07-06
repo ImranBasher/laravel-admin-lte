@@ -3,11 +3,12 @@
 @section("title", "Motivation")
 
 @section("content")
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>Motivation List</h1>
-        <a href="{{ route('admin.motivations.create') }}" class="btn btn-primary float-right">Add New</a>
+        <a href="{{ route('admin.motivations.create') }}" class="btn btn-primary float-left">Add New</a>
     </section>
+        <br>
 
     <section class="content">
         <div class="card">
@@ -54,5 +55,5 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 @endsection

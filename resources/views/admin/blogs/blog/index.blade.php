@@ -3,12 +3,12 @@
 @section("title","All Blogs")
 
 @section("content")
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>All Blogs</h1>
-        <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary float-right">Add Blog</a>
+        <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary float-left">Add Blog</a>
     </section>
-
+ <br>
     <section class="content">
         <div class="card">
             <div class="card-body p-0">
@@ -49,5 +49,5 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 @endsection

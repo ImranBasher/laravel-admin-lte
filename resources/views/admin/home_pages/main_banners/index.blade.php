@@ -4,15 +4,16 @@
 
 @section("content")
 
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>Main Banners</h1>
-        <a href="{{ route('admin.main_banners.create') }}" class="btn btn-primary float-right">Add New</a>
+        <a href="{{ route('admin.main_banners.create') }}" class="btn btn-primary float-left">Add New</a>
     </section>
+    <br>
 
-    <section class="content">
+    <section class="content mt-3">
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body ">
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
@@ -59,7 +60,7 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 
 
 

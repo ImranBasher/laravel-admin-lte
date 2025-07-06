@@ -3,12 +3,12 @@
 @section("title", "All Mails")
 
 @section("content")
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>All Mails</h1>
-        <a href="{{ route('admin.send_mails.create') }}" class="btn btn-primary float-right">Add Mail</a>
+        <a href="{{ route('admin.send_mails.create') }}" class="btn btn-primary float-left">Add Mail</a>
     </section>
-
+ <br>
     <section class="content">
         <div class="card">
             <div class="card-body">
@@ -45,5 +45,5 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 @endsection

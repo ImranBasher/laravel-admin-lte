@@ -4,12 +4,12 @@
 
 @section("content")
 
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>Authors</h1>
-        <a href="{{ route('admin.authors.create') }}" class="btn btn-primary float-right">Add New</a>
+        <a href="{{ route('admin.authors.create') }}" class="btn btn-primary float-left">Add New</a>
     </section>
-
+ <br>
     <section class="content">
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -65,6 +65,6 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 
 @endsection
