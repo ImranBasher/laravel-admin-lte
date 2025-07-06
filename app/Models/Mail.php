@@ -7,24 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Mail extends Model
 {
-         use HasFactory;
+    use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'mails';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'name',
+        'email',
+        'phone',
+        'subject',
+        'message',
     ];
 
-    // Optional: Casts for automatic type conversion
-    protected $casts = [
-        'status' => 'boolean',
-    ];
-
-    // Optional: For date handling
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
+    protected $dates = ['created_at', 'updated_at'];
 }

@@ -9,22 +9,29 @@ class AboutUs extends Model
 {
         use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'about_us';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'description_start',
+        'description_middle',
+        'description_end',
+        'mechanics_title_start',
+        'mechanics_title_end',
+        'mechanics_description',
+        'status',
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Optional: For date handling
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'about_us_id');
+    }
 }

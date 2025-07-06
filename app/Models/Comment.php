@@ -7,24 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
-        use HasFactory;
+    use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'comments';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'user_id', 'name', 'email', 'message', 'status'
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
-    ];
-
-    // Optional: For date handling
-    protected $dates = [
-        'created_at',
-        'updated_at',
     ];
 }

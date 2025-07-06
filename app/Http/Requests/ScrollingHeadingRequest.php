@@ -21,8 +21,12 @@ class ScrollingHeadingRequest extends FormRequest
      */
     public function rules(): array
     {
+  
         return [
-            //
+            'name'       => 'required|string|max:255',
+            'color'      => 'nullable|string',
+            'background' => 'nullable|string',
+            'scrolling_heading_logo'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

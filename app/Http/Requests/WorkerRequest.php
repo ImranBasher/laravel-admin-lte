@@ -21,8 +21,17 @@ class WorkerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+    return [
+        'name'        => 'required|string|max:255',
+        'email'       => 'required|email',
+        'phone'       => 'nullable|string|max:20',
+        'designation' => 'required|string|max:255',
+        'facebook'    => 'nullable|url',
+        'instagram'   => 'nullable|url',
+        'twitter'     => 'nullable|url',
+        'linkedin'    => 'nullable|url',
+        'bio'         => 'nullable|string',
+        'photo'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ];
     }
 }

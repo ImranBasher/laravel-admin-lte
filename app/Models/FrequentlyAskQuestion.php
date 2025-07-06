@@ -7,24 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FrequentlyAskQuestion extends Model
 {
-        use HasFactory;
+    use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'frequently_asked_questions';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'sub_service_category_id',
+        'question',
+        'answer',
+        'status',
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Optional: For date handling
-    protected $dates = [
-        'created_at',
-        'updated_at',
-    ];
+    public function subServiceCategory()
+    {
+        return $this->belongsTo(SubServiceCategory::class);
+    }
 }

@@ -7,24 +7,30 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FooterBanner extends Model
 {
-        use HasFactory;
+    use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'footer_banners';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'title_a',
+        'title_b',
+        'phone',
+        'button_text',
+        'button_link',
+        'status'
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Optional: For date handling
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'footer_banner_id');
+    }
 }

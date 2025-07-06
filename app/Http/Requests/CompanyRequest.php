@@ -22,7 +22,10 @@ class CompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'        => 'required|string|max:255',
+            'logo'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'website'     => 'nullable|url',
+            'description' => 'nullable|string'
         ];
     }
 }

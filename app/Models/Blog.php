@@ -9,22 +9,34 @@ class Blog extends Model
 {
     use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'blogs';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'title',
+        'slug',
+        'author_id',
+        'description',
+        'published_at',
+        'status',
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
+        'published_at' => 'date'
     ];
 
-    // Optional: For date handling
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'blog_id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class, 'author_id');
+    }
 }

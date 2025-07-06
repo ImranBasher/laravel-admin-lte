@@ -7,24 +7,28 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Motivation extends Model
 {
-         use HasFactory;
+use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'motivations';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'title',
+        'description',
+        'icon',
+        'status',
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Optional: For date handling
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'motivation_id');
+    }
 }

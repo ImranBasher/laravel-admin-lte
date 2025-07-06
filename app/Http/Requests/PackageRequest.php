@@ -22,7 +22,11 @@ class PackageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'duration'   => 'required|string|max:255',
+            'title'      => 'required|string|max:255',
+            'popularity' => 'required|boolean',
+            'price'      => 'required|numeric|min:0',
+            'services'   => 'required|string'
         ];
     }
 }

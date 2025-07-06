@@ -7,24 +7,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CustomerReview extends Model
 {
-        use HasFactory;
+    use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'customer_reviews';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'customer_name',
+        'place',
+        'customer_message',
+        'rating',
+        'company',
+        'status'
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Optional: For date handling
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'customer_review_id');
+    }
 }
+

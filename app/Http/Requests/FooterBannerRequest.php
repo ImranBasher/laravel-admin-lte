@@ -22,7 +22,11 @@ class FooterBannerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title_a'     => 'required|string|max:255',
+            'title_b'     => 'required|string|max:255',
+            'phone'       => 'required|string|max:20',
+            'button_text' => 'nullable|string',
+            'button_link' => 'nullable|url'
         ];
     }
 }

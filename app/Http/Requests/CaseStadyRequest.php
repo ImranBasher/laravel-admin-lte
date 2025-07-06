@@ -22,7 +22,13 @@ class CaseStadyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service_name' => 'required|string|max:255',
+            'service_work' => 'required|string',
+            'description'  => 'required|string',
+            'slug'         => 'required|string|unique:case_studies,slug,'.$this->case_study?->id,
+            'client_name'  => 'nullable|string',
+            'client_logo'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'cover_image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

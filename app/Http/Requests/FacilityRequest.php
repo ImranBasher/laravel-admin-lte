@@ -22,7 +22,10 @@ class FacilityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'                  => 'required|string|max:255',
+            'description'            => 'required|string',
+            'icon'                   => 'nullable|string',
+            'facilities_image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

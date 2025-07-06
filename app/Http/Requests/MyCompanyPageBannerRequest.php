@@ -22,7 +22,9 @@ class MyCompanyPageBannerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'short_title' => 'required|string|max:255',
+            'long_title'  => 'required|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

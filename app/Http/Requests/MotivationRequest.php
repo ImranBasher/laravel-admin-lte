@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class MotivationRequest extends FormRequest
@@ -22,7 +21,10 @@ class MotivationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'            => 'required|string|max:255',
+            'description'      => 'required|string',
+            'icon'             => 'nullable|string',
+            'motivation_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

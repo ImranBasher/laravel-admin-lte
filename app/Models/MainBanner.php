@@ -8,23 +8,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class MainBanner extends Model
 {
         use HasFactory;
+    protected $table = 'main_banners';
 
-    // Optional: If table name differs from model name
-    protected $table = '';
-
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'short_title',
+        'long_title',
+        'status',
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
-
-    // Optional: For date handling
+    
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'main_banner_id');
+    }
 }

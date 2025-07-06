@@ -22,7 +22,16 @@ class ServiceCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service_name'  => 'required|string|max:255',
+            'short_title'  => 'nullable|string|max:255',
+            // 'long_title'  => 'nullable',
+            // 'description'  => 'nullable',
+            // 'quantity'  => 'nullable',
+
+            'logo_first' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'logo_second' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'quantity_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

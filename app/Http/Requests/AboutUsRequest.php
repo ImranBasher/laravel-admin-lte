@@ -21,8 +21,20 @@ class AboutUsRequest extends FormRequest
      */
     public function rules(): array
     {
+
+       
         return [
-            //
+            'description_start'     => 'required|string',
+            'description_middle'    => 'required|string',
+            'description_end'       => 'required|string',
+            'mechanics_title_start' => 'required|string',
+            'mechanics_title_end'   => 'required|string',
+            'mechanics_description' => 'required|string',
+            'video_link'            => 'nullable|url',
+            'about_us_image'        => 'nullable|array',
+            'about_us_image.*'        => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
+
+        //  dd($this->all());
     }
 }

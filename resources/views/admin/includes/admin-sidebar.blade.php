@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('dashboardFiles/images') }}/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Dubai Online Car Care</span>
     </a>
 
     <!-- Sidebar -->
@@ -13,19 +13,7 @@
                 <img src="{{ asset('dashboardFiles/images') }}/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
-        </div>
-
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
+                <a href="#" class="d-block">Fahim Nur</a>
             </div>
         </div>
 
@@ -44,10 +32,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route('admin.all.general.setting')}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Widgets
+                            General Setting
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
@@ -56,84 +44,172 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
-                            Layout Options
+                            Home Page
                             <i class="fas fa-angle-left right"></i>
                             <span class="badge badge-info right">6</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('admin.main_banners.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Top Navigation</p>
+                                <p>
+                                    Main Banners
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
                             </a>
+                            {{-- <ul class="nav nav-treeview pl-3">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.main_banners.index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>All Banners</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.main_banners.create') }}" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Add Banner</p>
+                                    </a>
+                                </li> 
+                               <li class="nav-item">
+                                    <a href="{{ route('admin.main_banners.edit', 1) }}" class="nav-link">
+                                        <i class="fas fa-edit nav-icon"></i>
+                                        <p>Edit Banner</p>
+                                    </a>
+                                </li> 
+                            </ul> --}}
                         </li>
-                        <li class="nav-item">
-                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+
+                        <li class="nav-item has-treeview">
+                            {{-- <a href="pages/layout/top-nav-sidebar.html" class="nav-link"> --}}
+                            <a href="{{ route('admin.service_sections.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Top Navigation + Sidebar</p>
+                                <p>Service Sections</p>
                             </a>
+                            {{-- <ul class="nav nav-treeview pl-3">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.service_sections.index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>All Section</p>
+                                    </a>
+                                </li>
+                               <li class="nav-item">
+                                    <a href="{{ route('admin.service_sections.create') }}" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Add Sections</p>
+                                    </a>
+                                </li> 
+                              <li class="nav-item">
+                                    <a href="{{ route('admin.service_sections.edit', 1) }}" class="nav-link">
+                                        <i class="fas fa-edit nav-icon"></i>
+                                        <p>Edit Sections</p>
+                                    </a>
+                                </li> 
+                            </ul> --}}
                         </li>
                         <li class="nav-item">
                             <a href="pages/layout/boxed.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Boxed</p>
+                                <p>Service Provided Quantites </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                            <a href="{{ route('admin.motivations.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Sidebar</p>
+                                <p>Motivations</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
+                            <a href="{{ route('admin.scrolling_headings.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                                {{-- <p>Fixed Sidebar <small>+ Custom Area</small></p> --}}
+                                <p>Scrolling Headings</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/fixed-topnav.html" class="nav-link">
+                            <a href="{{ route('admin.why_chooses.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Navbar</p>
+                                <p>Why Chooses </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="pages/layout/fixed-footer.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Fixed Footer</p>
+                                <p>Facilities</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Collapsed Sidebar</p>
+                                <p>Service Price Packages</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Packages</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Companies</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Case Study</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Footer Banner</p>
+                            </a>
+                        </li> --}}
                     </ul>
                 </li>
+
+{{-- =============================== End Home Page Section ================================ --}}
+
+
+{{-- =============================== Start Service Category =============================== --}}
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
-                            Charts
+                            Category
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            {{-- <a href="pages/charts/chartjs.html" class="nav-link"> --}}
+                            <a href="{{ route('admin.service_categories.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>ChartJS</p>
+                                <p>Service Category</p>
                             </a>
+
+                            {{-- <ul class="nav nav-treeview pl-3">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.service_sections.index') }}" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>All Section</p>
+                                    </a>
+                                </li>
+                            </ul> --}}
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="{{ route('admin.sub_service_categories.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Flot</p>
+                                <p>Sub Service Category</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+
+
+                        {{-- <li class="nav-item">
                             <a href="pages/charts/inline.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Inline</p>
@@ -144,142 +220,125 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>uPlot</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.blogs.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tree"></i>
                         <p>
-                            UI Elements
+                            Blog
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    {{-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="pages/UI/general.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>General</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="pages/UI/icons.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Icons</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/UI/buttons.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Buttons</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/UI/sliders.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Sliders</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/UI/modals.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Modals & Alerts</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/UI/navbar.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Navbar & Tabs</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/UI/timeline.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Timeline</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/UI/ribbons.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ribbons</p>
-                            </a>
-                        </li>
-                    </ul>
+                    </ul> --}}
                 </li>
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.authors.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Forms
+                            Author
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/forms/general.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>General Elements</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/forms/advanced.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Advanced Elements</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/forms/editors.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Editors</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/forms/validation.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Validation</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+              <li class="nav-item">
+                    <a href="{{ route('admin.send_mails.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Mails
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                </li> 
+                    
+
+
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin.comments.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Tables
+                            Comment
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Simple Tables</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/tables/data.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>DataTables</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/tables/jsgrid.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>jsGrid</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-header">EXAMPLES</li>
+                </li> 
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
+                    <a href="{{ route('admin.faqs.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Calendar
-                            <span class="badge badge-info right">2</span>
+                            FAQs
+                            <i class="fas fa-angle-left right"></i>                            
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.workers.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Workers
+                            <i class="fas fa-angle-left right"></i>                            
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.products.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Products
+                            <i class="fas fa-angle-left right"></i>                            
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.about_us.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            About Us
+                            <i class="fas fa-angle-left right"></i>                            
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.footer_banners.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Footer Banner
+                            <i class="fas fa-angle-left right"></i>                            
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.customer_reviews.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Customer Review
+                            <i class="fas fa-angle-left right"></i>                            
+                        </p>
+                    </a>
+                </li>
+
+
+
+
+
+                {{-- <li class="nav-header">EXAMPLES</li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.faqs.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>
+                            FAQs                            
+                        </p>
+                    </a>
+                </li> 
                 <li class="nav-item">
                     <a href="pages/gallery.html" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
@@ -547,15 +606,15 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-header">MISCELLANEOUS</li>
+                </li> --}}
+                {{-- <li class="nav-header">MISCELLANEOUS</li> --}}
                 <li class="nav-item">
-                    <a href="iframe.html" class="nav-link">
-                        <i class="nav-icon fas fa-ellipsis-h"></i>
-                        <p>Tabbed IFrame Plugin</p>
-                    </a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="https://adminlte.io/docs/3.1/" class="nav-link">
                         <i class="nav-icon fas fa-file"></i>
                         <p>Documentation</p>
@@ -645,7 +704,7 @@
                         <p>Informational</p>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </nav>
         <!-- /.sidebar-menu -->
     </div>

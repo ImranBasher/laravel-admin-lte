@@ -22,7 +22,9 @@ class ServiceProvidedQuantityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service_category_id' => 'required|exists:service_categories,id',
+            'quantity'            => 'required|integer|min:0',
+            'logo'                => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

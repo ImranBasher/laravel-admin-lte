@@ -22,7 +22,9 @@ class FrequentlyAskQuestionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'sub_service_category_id' => 'required|exists:sub_service_categories,id',
+            'question'                => 'required|string',
+            'answer'                  => 'required|string',
         ];
     }
 }

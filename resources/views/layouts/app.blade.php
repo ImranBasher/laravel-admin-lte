@@ -33,6 +33,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -70,6 +71,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="dropdown-item">Logout</button>
+</form>
                                 </div>
                             </li>
                         @endguest

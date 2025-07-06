@@ -21,8 +21,15 @@ class CommentRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($this->all());
         return [
-            //
+            // For authenticated users
+            'name' => 'required|string|max:255', // Required for guests
+            'email' => 'required|email|max:255', // Required for guests
+            'message' => 'required|string|min:10|max:2000',
+            // 'commentable_id' => 'required|integer', // ID of the item being commented on
+            // 'commentable_type' => 'required|string|in:App\Models\Blog,App\Models\Product', // Model types allowed
+            // 'parent_id' => 'nullable|exists:comments,id', // For reply comments
         ];
     }
 }

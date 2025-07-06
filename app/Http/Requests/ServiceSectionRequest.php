@@ -22,7 +22,10 @@ class ServiceSectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'        => 'nullable|string|max:255',
+            'title_start'  => 'nullable|string|max:255',
+            'title_middle' => 'nullable|string|max:255',
+            'title_end'    => 'nullable|string|max:255'
         ];
     }
 }

@@ -22,7 +22,11 @@ class ServicePricePackageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'                    => 'required|string|max:255',
+            'short_description_start'  => 'required|string',
+            'short_description_middle' => 'required|string',
+            'short_description_end'    => 'required|string',
+            'price'                    => 'required|numeric|min:0'
         ];
     }
 }

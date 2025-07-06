@@ -7,24 +7,28 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ScrollingHeading extends Model
 {
-        use HasFactory;
+    use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'scrolling_headings';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'name',
+        'color',
+        'background',
+        'status',
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Optional: For date handling
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'scrolling_heading_id');
+    }
 }

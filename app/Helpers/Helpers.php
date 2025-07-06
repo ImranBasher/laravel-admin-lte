@@ -1,10 +1,13 @@
-<?php 
+<?php
 
+use App\Models\MultipleImage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 
-if(!function_exists("errorArray")){
-    function errorArray($e){
+if (!function_exists("errorArray")) {
+    function errorArray($e)
+    {
 
         return [
             "requested_url" => currentUrl(),
@@ -15,7 +18,7 @@ if(!function_exists("errorArray")){
     }
 }
 
-if(!function_exists("todayDateTimePrefix")) {
+if (!function_exists("todayDateTimePrefix")) {
     function todayDateTimePrefix()
     {
 
@@ -23,30 +26,32 @@ if(!function_exists("todayDateTimePrefix")) {
     }
 }
 
-if(!function_exists("randGen")) {
+if (!function_exists("randGen")) {
     function randGen($valueType = 1, $length = 6)
     {
         $value = null;
-        if($valueType == 1){
-            $value = random_int(111111,999999);
+        if ($valueType == 1) {
+            $value = random_int(111111, 999999);
         }
 
         return $value;
     }
 }
 
-if(!function_exists("miliTimeFormat")) {
-    function miliTimeFormat(){
+if (!function_exists("miliTimeFormat")) {
+    function miliTimeFormat()
+    {
 
         return now()->format("Y-m-d H:i:s, v");
     }
 }
 
-if(!function_exists("passwordGenerator")) {
-    function passwordGenerator($digitLimit = 8, $mixed = false){
-        if($mixed){
+if (!function_exists("passwordGenerator")) {
+    function passwordGenerator($digitLimit = 8, $mixed = false)
+    {
+        if ($mixed) {
 
-            $password =  substr(md5(time()),0,8);
+            $password =  substr(md5(time()), 0, 8);
             commonLog("Mixed Generated Password ", $password, \App\Services\Log\LogService::LOG_USER);
 
             return $password;
@@ -55,25 +60,26 @@ if(!function_exists("passwordGenerator")) {
         $minValue = 10 ** ($digitLimit - 1);
         $maxValue = (10 ** $digitLimit) - 1;
 
-        return  random_int($minValue,$maxValue);
+        return  random_int($minValue, $maxValue);
     }
 }
 
-if(!function_exists("addMinutes")) {
-    function addMinutes($minutes = 5){
+if (!function_exists("addMinutes")) {
+    function addMinutes($minutes = 5)
+    {
 
         return now()->addMinutes($minutes);
     }
 }
 
-if(!function_exists("commonLog")){
+if (!function_exists("commonLog")) {
     function commonLog(
         $title,
         $payloads,
         $channel
-    ){
+    ) {
 
-         (new \App\Services\Log\LogService())->commonLog(
+        (new \App\Services\Log\LogService())->commonLog(
             $title,
             $payloads,
             $channel
@@ -84,68 +90,75 @@ if(!function_exists("commonLog")){
 
 
 
-if(!function_exists("deleteLog")){
+if (!function_exists("deleteLog")) {
     function deleteLog(
         $id = null
-    ){
+    ) {
         $data['date_time']         = miliTimeFormat();
         $data['url']               = request()->url();
         $data['logged_in_user_id'] = userID();
         $data['query_params']      = $id;
 
-         \Illuminate\Support\Facades\Log::info("Deleting Log : ".json_encode($data));
+        \Illuminate\Support\Facades\Log::info("Deleting Log : " . json_encode($data));
     }
 }
 
 
-if(!function_exists("currentRoute")){
-    function currentRoute(){
+if (!function_exists("currentRoute")) {
+    function currentRoute()
+    {
 
         return request()->route()->getName();
     }
 }
 
-if(!function_exists("currentUrl")){
-    function currentUrl(){
+if (!function_exists("currentUrl")) {
+    function currentUrl()
+    {
 
         return request()->fullUrl();
     }
 }
 
 
-if(!function_exists("currentHost")){
-    function currentHost(){
+if (!function_exists("currentHost")) {
+    function currentHost()
+    {
 
         return request()->getSchemeAndHttpHost();
     }
 }
 
-if(!function_exists("imageLink")){
-    function imageLink($imageColumn){
+if (!function_exists("imageLink")) {
+    function imageLink($imageColumn)
+    {
 
-        return !empty($imageColumn) ? currentHost()."/".$imageColumn : null;
+        return !empty($imageColumn) ? currentHost() . "/" . $imageColumn : null;
     }
 }
 
 
-if(!function_exists("statuses")) {
-    function statuses(){
+if (!function_exists("statuses")) {
+    function statuses()
+    {
 
-        return ["active","inactive"];
+        return ["active", "inactive"];
     }
 }
 
 
-if(!function_exists("statusManage")) {
-    function statusManage($status = 1){
+if (!function_exists("statusManage")) {
+    function statusManage($status = 1)
+    {
 
 
         return allStatuses()[$status];
     }
 }
 
-if(!function_exists("allStatuses")) {
-    function allStatuses(){
+if (!function_exists("allStatuses")) {
+    function allStatuses()
+    {
 
 
         return [
@@ -160,25 +173,28 @@ if(!function_exists("allStatuses")) {
 }
 
 
-if(!function_exists("slugMaker")) {
-    function slugMaker($value){
+if (!function_exists("slugMaker")) {
+    function slugMaker($value)
+    {
 
         return \Illuminate\Support\Str::slug($value);
     }
 }
 
-if(!function_exists("newUUID")) {
-    function newUUID(){
+if (!function_exists("newUUID")) {
+    function newUUID()
+    {
 
         return \Illuminate\Support\Str::uuid()->toString();
     }
 }
 
 
-if(!function_exists("createdBy")) {
-    function createdBy($createdByObject){
+if (!function_exists("createdBy")) {
+    function createdBy($createdByObject)
+    {
 
-        if(empty($createdByObject)){
+        if (empty($createdByObject)) {
             return null;
         }
 
@@ -195,8 +211,9 @@ if(!function_exists("createdBy")) {
 }
 
 
-if(!function_exists("validationErrorThrow")) {
-    function validationErrorThrow($validator, $isValidationError = true){
+if (!function_exists("validationErrorThrow")) {
+    function validationErrorThrow($validator, $isValidationError = true)
+    {
         $fabignCode       = new FabignCode();
         $title            = $isValidationError ? "Opps! Validation Errors" : "Stock not available";
 
@@ -212,12 +229,12 @@ if(!function_exists("validationErrorThrow")) {
         ];
 
         commonLog(
-            miliTimeFormat()." ".$title,
-             $errorDataFormats,
+            miliTimeFormat() . " " . $title,
+            $errorDataFormats,
             $isValidationError ? LogService::LOG_VALIDATION_ERROR : LogService::LOG_SALE_CART
         );
 
-         throw new HttpResponseException(
+        throw new HttpResponseException(
             response()
                 ->json(
                     $errorDataFormats,
@@ -228,26 +245,103 @@ if(!function_exists("validationErrorThrow")) {
 }
 
 
-if(!function_exists("stringReplace")) {
-    function stringReplace($text, $keyword = "storage/", $replace= "")
+if (!function_exists("stringReplace")) {
+    function stringReplace($text, $keyword = "storage/", $replace = "")
     {
-        return str_replace($keyword,$replace,$text);
+        return str_replace($keyword, $replace, $text);
     }
 }
 
 
-if(!function_exists("url_version")) {
+if (!function_exists("url_version")) {
     function url_version($file)
     {
         $linkRandom = "06022023001";
-        return asset($file.'?version='.$linkRandom);
+        return asset($file . '?version=' . $linkRandom);
     }
 }
 
-if(!function_exists("localize")) {
+if (!function_exists("localize")) {
     function localize($value)
     {
 
         return $value;
+    }
+}
+
+
+
+if (!function_exists('multipleImageUploadFiles')) {
+    function multipleImageUploadFiles($request, $directory)
+    {
+        // dd($request);
+        $uploadedImages = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $uploadedImages[] = singlePhotoUpload($image, $directory); // This will return storage path
+            }
+        }
+        return $uploadedImages;
+    }
+}
+
+if (!function_exists('singlePhotoUpload')) {
+    function singlePhotoUpload($image, $directory)
+    {
+        // dd($image);
+        $newDirectory = 'images/' . $directory;
+        $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+        return $image->storeAs($newDirectory, $imageName, 'public');
+    }
+}
+
+
+if (!function_exists('delete_image_by_id')) {
+    function delete_image_by_id(int $imageId, ?string $directory = null): bool
+    {
+        $image = \App\Models\MultipleImage::find($imageId);
+
+        if (!$image) {
+            return false;
+        }
+
+        $directory = $directory ?? $image->type;
+
+        // This path points to: storage/app/public/images/{directory}/{image}
+        $imagePath = storage_path('app/public/images/' . $directory . '/' . basename($image->image));
+
+        if (file_exists($imagePath)) {
+            @unlink($imagePath); // Delete the actual file
+        }
+
+        $image->delete(); // Delete the database entry
+
+        return true;
+    }
+}
+
+if (!function_exists('delete_images_by_column')) {
+    function delete_images_by_column($column, $value, $directory): void
+    {
+        $images = \App\Models\MultipleImage::where($column, $value)->get();
+
+        foreach ($images as $image) {
+            delete_image_by_id($image->id, $directory);
+        }
+    }
+
+
+    // it is use from service 
+    if (!function_exists('deleteSingleImage')) {
+        function deleteSingleImage(MultipleImage $image)
+        {
+
+            if (Storage::disk('public')->exists($image->image)) {
+                Storage::disk('public')->delete($image->image);
+            }
+
+            $image->delete();
+        }
     }
 }

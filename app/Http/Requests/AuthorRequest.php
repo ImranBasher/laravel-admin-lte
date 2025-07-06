@@ -22,7 +22,17 @@ class AuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|email|unique:authors,email,'.$this->author?->id,
+            'phone'     => 'nullable|string|max:20',
+            'facebook'  => 'nullable|url',
+            'twitter'   => 'nullable|url',
+            'instagram' => 'nullable|url',
+            'linkedin'  => 'nullable|url',
+            'author_photos'     => 'nullable|array',
+            'author_photos.*'     => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'bio'       => 'nullable|string'
         ];
+
     }
 }

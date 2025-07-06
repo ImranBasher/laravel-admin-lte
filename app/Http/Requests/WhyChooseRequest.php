@@ -22,7 +22,10 @@ class WhyChooseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title_start' => 'required|string|max:255',
+            'title_end'   => 'required|string|max:255',
+            'video_link'  => 'nullable|url',
+            'why_choose_image'   => 'nullable|image|mimes: jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

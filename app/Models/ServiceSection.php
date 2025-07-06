@@ -7,24 +7,30 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ServiceSection extends Model
 {
-        use HasFactory;
+    use HasFactory;
 
-    // Optional: If table name differs from model name
-    protected $table = '';
+    protected $table = 'service_sections';
 
-    // Fields that can be mass-assigned
     protected $fillable = [
-
+        'title',
+        'title_start',
+        'title_middle',
+        'title_end',
+        'description',
+        'status'
     ];
 
-    // Optional: Casts for automatic type conversion
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    // Optional: For date handling
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'service_section_id');
+    }
 }
