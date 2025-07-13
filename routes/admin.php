@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\WorkerController;
+use App\Http\Controllers\Admin\AdminProfileController;
+// use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ProductController;
@@ -28,6 +30,10 @@ Route::prefix("admin")->name("admin.")->middleware('admin.auth')->group(function
     Route::prefix("dashboard")->name("dashboard.")->group(function () {
         Route::get("/", [DashboardController::class, "index"])->name("index");
     });
+    // Admin profile route
+    Route::get('profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('profile', [AdminProfileController::class, 'update'])->name('profile.update');
+
 
     Route::get('/general/setting',[GeneralSettingController::class, 'index'])->name('all.general.setting');
     Route::put('/general-settings/update/{general_settings}', [GeneralSettingController::class, 'update'])->name('general-settings.update');

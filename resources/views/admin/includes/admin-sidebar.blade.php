@@ -10,10 +10,22 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('dashboardFiles/images') }}/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+        @php
+            $profileImage = optional(
+                $authUser->multipleImages()
+                         ->where('type', 'profile_image')
+                         ->latest()
+                         ->first()
+            )->image;
+        @endphp
+        @if ($profileImage)
+            <img src="{{ asset($profileImage) }}" class="img-circle elevation-2" alt="User Image">
+        @endif   
+               
             </div>
             <div class="info">
-                <a href="#" class="d-block">Fahim Nur</a>
+                <a href="{{ route('admin.profile.edit') }}" class="d-block"><strong>{{ $authUser->name }}</strong></a>
             </div>
         </div>
 

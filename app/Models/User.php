@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
+/**
+ * @property-read \App\Models\Profile|null $profile
+ */
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +47,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'user_id');
+    }
+
+    public function multipleImages()
+    {
+        return $this->hasMany(MultipleImage::class, 'user_id');
+    }
+
 }

@@ -13,6 +13,7 @@ class MultipleImage extends Model
         'type',
         'purpose',
         'sort_order',
+        'user_id',
         'general_setting_id',
         'main_banner_id',
         'service_category_id',

@@ -20,6 +20,7 @@ return new class extends Migration
             
             // All possible foreign keys (nullable)
             $table->foreignId('general_setting_id')->nullable()->constrained('general_settings')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('profiles')->onDelete('cascade');
             $table->foreignId('main_banner_id')->nullable()->constrained('main_banners')->onDelete('cascade');
             $table->foreignId('service_category_id')->nullable()->constrained('service_categories')->onDelete('cascade');
             $table->foreignId('sub_service_category_id')->nullable()->constrained('sub_service_categories')->onDelete('cascade');
@@ -51,6 +52,7 @@ return new class extends Migration
         Schema::table('multiple_images', function (Blueprint $table) {
             // Drop all foreign key constraints
             $foreignKeys = [
+                'user_id',
                 'general_setting_id',
                 'main_banner_id',
                 'service_category_id',
