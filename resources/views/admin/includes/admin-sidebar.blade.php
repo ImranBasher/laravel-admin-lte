@@ -20,7 +20,7 @@
             )->image;
         @endphp
         @if ($profileImage)
-            <img src="{{ asset($profileImage) }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('storage/'. $profileImage) }}" class="img-circle elevation-2" alt="User Image">
         @endif   
                
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -32,5 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('authUser', $user);
         });
+
+        View::share('general_setting', GeneralSetting::with(['multipleImages'])->first());
     }
 }
