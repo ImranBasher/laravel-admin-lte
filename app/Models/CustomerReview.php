@@ -33,5 +33,7 @@ class CustomerReview extends Model
     {
         return $this->hasMany(MultipleImage::class, 'customer_review_id');
     }
+
+    
 }
 

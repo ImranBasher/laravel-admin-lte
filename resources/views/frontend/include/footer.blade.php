@@ -49,7 +49,7 @@
                                     <div class="wptb-image-single wow fadeInUp d-none d-lg-block">
                                         <div class="wptb-item--inner">
                                             <div class="wptb-item--image">
-                                                <img src="assets/img/more/1.png" alt="img">
+                                                <img src="{{ asset('assets/img/more/1.png')}}" alt="img">
                                             </div>
                                         </div>
                                     </div>

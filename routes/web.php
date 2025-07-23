@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 #B
 use App\Http\Controllers\BasicController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ServiceController;
 use App\Http\Controllers\v1\Website\BanglaPdfController;
@@ -30,3 +31,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/services/{sub_service_category}', [ServiceController::class, 'showSubService'])
     ->name('services.subcategory');
+
+Route::get('/blog/list', [BlogController::class, 'index'])->name('blog.list');    

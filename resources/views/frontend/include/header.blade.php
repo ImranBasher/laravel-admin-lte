@@ -150,10 +150,7 @@
 </li>                                 
                                     <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
                                         <ul class="sub-menu">
-                                            <li class="menu-item"><a href="blog-grid.html">Blog Grid</a></li>
-                                            <li class="menu-item"><a href="blog-grid-2.html">Blog Grid Two</a></li>
-                                            <li class="menu-item"><a href="blog-list.html">Blog List</a></li>
-                                            <li class="menu-item"><a href="blog-details.html">Blog Details</a></li>
+                                            <li class="menu-item"><a href="{{route('blog.list')}}">Blog List</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-has-children"><a href="#">Contact</a>
