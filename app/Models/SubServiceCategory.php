@@ -49,4 +49,10 @@ class SubServiceCategory extends Model
     {
         return $this->belongsTo(ServiceCategory::class, 'service_category_id');
     }
+
+    public function fAQs(){
+        return $this->hasMany(FrequentlyAskQuestion::class, 'sub_service_category_id');
+    }
+
+
 }

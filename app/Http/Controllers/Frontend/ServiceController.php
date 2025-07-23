@@ -10,9 +10,9 @@ class ServiceController extends Controller
 {
         public function showSubService($sub_service_category)
         {
-            $subService = SubServiceCategory::with(['serviceCategory', 'multipleImages'])
+            $subService = SubServiceCategory::with(['serviceCategory', 'multipleImages', 'fAQs' ])
                 ->findOrFail($sub_service_category);
-            
+            //  return $subService;
             return view('frontend.services.sub_service', compact('subService'));
         }
 }
