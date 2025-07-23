@@ -230,3 +230,12 @@
         <input type="file" name="quantity_logo" id="quantity_logo" class="form-control-file">
     </div>
 </div>
+
+
+<!-- SVG Icon -->
+<div class="form-group row">
+    <label for="svg_icon" class="col-sm-2 col-form-label">SVG Icon</label>
+    <div class="col-sm-10">
+        <textarea name="svg_icon" id="svg_icon" class="form-control">{{ old('svg_icon', $subServiceCategory->svg_icon ?? '') }}</textarea>
+    </div>
+</div>

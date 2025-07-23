@@ -1,0 +1,179 @@
+/* Service Details Page */
+.service-details-section {
+    padding: 80px 0;
+}
+
+.breadcumb-wrapper {
+    background: #f5f5f5;
+    padding: 30px 0;
+    margin-bottom: 40px;
+}
+
+.bread-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.breadcrumb-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.breadcrumb-nav li {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.breadcrumb-nav li:after {
+    content: '/';
+    margin-left: 10px;
+    color: #777;
+}
+
+.breadcrumb-nav li:last-child:after {
+    display: none;
+}
+
+.service-details-wrap h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.service-key-list,
+.service-features-list,
+.service-results-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.service-key-list li,
+.service-features-list li,
+.service-results-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.service-key-list li i,
+.service-features-list li i,
+.service-results-list li i {
+    color: #4CAF50;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+
+.process-steps {
+    margin-bottom: 20px;
+}
+
+.process-step {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.process-step:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: #4CAF50;
+    border-radius: 50%;
+}
+
+/* Sidebar Styles */
+.service-sidebar {
+    padding-left: 30px;
+}
+
+.sidebar-widget {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.widget-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.service-category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-category-list li {
+    margin-bottom: 10px;
+}
+
+.service-category-list li a {
+    display: block;
+    padding: 8px 0;
+    color: #333;
+    font-weight: 500;
+    border-bottom: 1px dashed #ddd;
+}
+
+.sub-service-list {
+    list-style: none;
+    padding: 0 0 0 15px;
+    margin: 10px 0 0 0;
+}
+
+.sub-service-list li {
+    margin-bottom: 5px;
+}
+
+.sub-service-list li a {
+    font-weight: 400;
+    color: #666;
+    border-bottom: none;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: #4CAF50;
+}
+
+.working-hours h5 {
+    font-size: 16px;
+    margin: 20px 0 10px;
+}
+
+/* Gallery Slider */
+.gallery-slider {
+    margin-bottom: 30px;
+}
+
+.gallery-slider img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.swiper-pagination {
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 1199px) {
+    .service-sidebar {
+        padding-left: 0;
+        margin-top: 50px;
+    }
+}

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\GeneralSetting;
+use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -35,5 +36,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::share('general_setting', GeneralSetting::with(['multipleImages'])->first());
+    
+         // Share service categories with subcategories with all views
+        View::share('serviceCategories', ServiceCategory::with(['subServiceCategories'])
+            ->where('status', true)
+            ->orderBy('service_name')
+            ->get());   
     }
 }

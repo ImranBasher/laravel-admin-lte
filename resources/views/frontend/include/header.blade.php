@@ -33,7 +33,6 @@
                                 <li><a href="#"><span class="icon bi bi-geo-alt-fill"></span>{{$general_setting->address}}</a></li>
                             </ul>
                         </div>
-                        
                         <!-- Right Box -->
                         <div class="right-box d-flex align-items-center">
                             <!-- Social Box -->
@@ -50,23 +49,19 @@
                     </div>
                 </div>
             </div>
-
             <!-- Lower Bar -->
             <div class="header-inner">
                 <div class="container-fluid pe-0">
                     <div class="d-flex align-items-center justify-content-between">
                         <!-- Left Part -->
                         <div class="header_left_part d-flex align-items-center">
+        @php
+            $nav_logo = null;
 
-@php
-    $nav_logo = null;
-
-    foreach ($general_setting->multipleImages->where('purpose', 'general_setting')->where('type', 'logo') as  $image) {
-        $nav_logo = $image;
-    }
-@endphp
-
-
+            foreach ($general_setting->multipleImages->where('purpose', 'general_setting')->where('type', 'logo') as  $image) {
+                $nav_logo = $image;
+            }
+        @endphp
                         {{-- @foreach($blog->multipleImages->where('purpose', 'blog') as $image)
                             <div class="mt-2">
                                 <img src="{{ asset('storage/' . $image->image) }}" width="100">
@@ -119,13 +114,40 @@
                                             <li class="menu-item"><a href="login.html">Login</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-has-children"><a href="#">Services</a>
+                                    {{-- <li class="menu-item menu-item-has-children"><a href="#">Services</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="services-1.html">Services One</a></li>
                                             <li class="menu-item"><a href="services-2.html">Services Two</a></li>
                                             <li class="menu-item"><a href="service-details.html">Service Details</a></li>
                                         </ul>
-                                    </li>                              
+                                    </li>                               --}}
+
+<li class="menu-item menu-item-has-children"><a href="#">Services</a>
+    <ul class="sub-menu">
+        @forelse($serviceCategories as $category)
+            @if($category->subServiceCategories->count())
+                <li class="menu-item menu-item-has-children">
+                    <a href="#">{{ $category->service_name }}</a>
+                    <ul class="sub-menu">
+                        @foreach($category->subServiceCategories as $subService)
+                            <li class="menu-item">
+                                <a href="{{ route('services.subcategory', ['sub_service_category' => $subService->id]) }}">
+                                    {{ $subService->sub_service_name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+            @else
+                <li class="menu-item">
+                    <a href="#">{{ $category->service_name }}</a>
+                </li>
+            @endif
+        @empty
+            <li class="menu-item"><a href="#">No Services Available</a></li>
+        @endforelse
+    </ul>
+</li>                                 
                                     <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="blog-grid.html">Blog Grid</a></li>
@@ -222,7 +244,7 @@
                             <div class="wptb-item--subtitle">
                                 Call Us Anytime
                             </div>
-                            <h5 class="wptb-item--title"><a href="tel:+12345677345">+123 45677345</a></h5>
+                            <h5 class="wptb-item--title"><a href="tel:{{$general_setting->phone}}">{{$general_setting->phone}}</a></h5>
                         </div>
                     </div>
 
@@ -231,7 +253,7 @@
                             <div class="wptb-item--subtitle">
                                 SEND US MAIL
                             </div>
-                            <h5 class="wptb-item--title"><a href="mailto:ducatiboxcar@email.com">ducatiboxcar@email.com</a></h5>
+                            <h5 class="wptb-item--title"><a href="mailto:{{$general_setting->email}}">{{$general_setting->email}}</a></h5>
                         </div>
                     </div>
 
@@ -239,19 +261,19 @@
                         <div class="wptb-item--inner">
                             <div class="wptb-item--subtitle">
                                 VISIT OUR WORKSHOP
-                            </div>
-                            <h5 class="wptb-item--title"><a href="#">17110 116th Ave SE Unit A
-                                Renton, WA 98058-5055</a></h5>
+                            </div>2
+                            <h5 class="wptb-item--title"><a href="#">{{$general_setting->address}}</a></h5>
                         </div>
                     </div>
                 </div>
                 <div class="social_sites">
                     <ul class="d-flex align-items-center">
-                        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                        <li><a href="#"><i class="bi bi-twitter-x"></i></a></li>
-                        <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-                        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+                        <li><a href="{{$general_setting->facebook_link}}" class="bi bi-facebook"></a></li>
+                        <li><a href="{{$general_setting->instagram_link}}" class="bi bi-instagram"></a></li>
+                        <li><a href="{{$general_setting->twitter_link}}" class="bi bi-twitter-x"></a></li>
+                        <li><a href="{{$general_setting->linkedin_link}}" class="bi bi-linkedin"></a></li>
                     </ul>
+
                 </div>
 			</div>
 		</div>

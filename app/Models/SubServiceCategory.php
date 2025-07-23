@@ -27,6 +27,7 @@ class SubServiceCategory extends Model
         'expected_result_list',
         'expected_result_description',
         'quantity',
+        'svg_icon',
         'status',
     ];
 

@@ -33,4 +33,10 @@ class ServiceCategory extends Model
     {
         return $this->hasMany(MultipleImage::class, 'service_category_id');
     }
+
+        // Add this relationship method
+    public function subServiceCategories()
+    {
+        return $this->hasMany(SubServiceCategory::class, 'service_category_id');
+    }
 }

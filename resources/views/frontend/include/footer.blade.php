@@ -1,4 +1,18 @@
         <!-- Footer -->
+        @php
+            $nav_logo = null;
+
+            foreach ($general_setting->multipleImages->where('purpose', 'general_setting')->where('type', 'logo') as  $image) {
+                $nav_logo = $image;
+            }
+
+            $companyName = trim(
+                        ($general_setting->company_name_start ?? '') . ' ' .
+                        ($general_setting->company_name_middle ?? '') . ' ' .
+                        ($general_setting->company_name_end ?? '')
+                    );
+        @endphp
+        
         <footer class="footer style1">
             <div class="footer-top">
                 <div class="container">
@@ -24,7 +38,7 @@
                                             </svg>
                                             IF ANY CAR REALATED ISSUES ARE BOTHERING 
                                         </h6>
-                                        <h1 class="wptb-item--title"> GIVE A CALL TO DUCATIBOX</h1>
+                                        <h1 class="wptb-item--title"> GIVE A CALL TO {{$companyName}}</h1>
                                     </div>
                                 </div>                                
                             </div>
@@ -52,7 +66,7 @@
                                             </div>
                                             <div class="wptb-item--holder">
                                                 <p class="wptb-item--description">Need Help</p>
-                                                <h5 class="wptb-item--title"> <a href="tel:+455787891155">+ 455 7878 911 55</a></h5>
+                                                <h5 class="wptb-item--title"> <a href="tel:+{{$general_setting->phone}}">+{{$general_setting->phone}}</a></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -65,14 +79,14 @@
                         <div class="row">
                             <div class="col-xl-3 mb-5 mb-xl-0">
                                 <div class="logo mr-bottom-30">
-                                    <a href="index.html" class=""><img src="assets/img/logo.svg" alt="logo"></a>
+                                    <a href="{{route('home')}}" class="light_logo"><img src="{{asset('storage/'.$nav_logo->image)}}" alt="logo"></a>
                                 </div>
     
                                 <div class="wptb-icon-box1 footer-contact-style mr-bottom-30">
                                     <div class="wptb-item--inner flex-start">
                                         <div class="wptb-item--holder">
                                             <p class="wptb-item--description">Call Us Anytime</p>
-                                            <h5 class="wptb-item--title"><a href="tel:12345677345">+123 45677345</a></h5>
+                                            <h5 class="wptb-item--title"><a href="tel:+{{$general_setting->phone}}">{{$general_setting->phone}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -81,8 +95,7 @@
                                     <div class="wptb-item--inner flex-start">
                                         <div class="wptb-item--holder">
                                             <p class="wptb-item--description">VISIT OUR LOCATION</p>
-                                            <h5 class="wptb-item--title">17110 116th Ave SE Unit A
-                                                Renton, WA 98058-5055</h5>
+                                            <h5 class="wptb-item--title">{{$general_setting->address}}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -150,15 +163,21 @@
             <div class="footer-bottom">
                 <div class="container">
                     <div class="footer-bottom-inner">
-                        <div class="copyright">
-                            <p>&copy;Copyright 2024 <a href="https://themeforest.net/user/wpthemebooster">DUCATIBOX</a>. All rights reserved</p>
-                        </div>
+
+
+                <div class="copyright">
+                    <p>
+                        &copy; Copyright {{ now()->year }} 
+                        <a href="{{route('home')}}">{{ $companyName }}</a>. 
+                        All rights reserved.
+                    </p>
+                </div>
                         <div class="social-box">
                             <ul>
-                                <li><a href="https://www.facebook.com/" class="bi bi-facebook"></a></li>
-                                <li><a href="https://www.instagram.com/" class="bi bi-instagram"></a></li>
-                                <li><a href="https://www.linkedin.com/" class="bi bi-linkedin"></a></li>
-                                <li><a href="https://www.behance.com/" class="bi bi-behance"></a></li>
+                                    <li><a href="{{$general_setting->facebook_link}}" class="bi bi-facebook"></a></li>
+                                    <li><a href="{{$general_setting->instagram_link}}" class="bi bi-instagram"></a></li>
+                                    <li><a href="{{$general_setting->twitter_link}}" class="bi bi-twitter-x"></a></li>
+                                    <li><a href="{{$general_setting->linkedin_link}}" class="bi bi-linkedin"></a></li>
                             </ul>
                         </div>
                         <div class="footer-nav-bottom">

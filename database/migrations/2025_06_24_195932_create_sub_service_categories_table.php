@@ -28,6 +28,8 @@ return new class extends Migration
             $table->text('expected_result_list')->nullable();
             $table->text('expected_result_description')->nullable();
             $table->integer('quantity')->nullable();
+            $table->text('svg_icon')->nullable();
+            
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 

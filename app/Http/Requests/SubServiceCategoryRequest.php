@@ -54,6 +54,8 @@ class SubServiceCategoryRequest extends FormRequest
 
             'quantity'                         => 'nullable|int|max:255',
             'quantity_logo'                     => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
+            'svg_icon'                          => 'nullable',
         ];
 
     }
