@@ -22,10 +22,25 @@ class BlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'          => 'required|string|max:255',
-            'description'    => 'required|string',
-            'blog_images'    => 'nullable|array',
-            'blog_images.*'  => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title'            => 'required|string|max:255',
+            'description_1'    => 'nullable|string',
+            'description_2'    => 'nullable|string',
+            'description_3'    => 'nullable|string',
+            'description_4'    => 'nullable|string',
+            'blog_images'      => 'nullable|array',
+            'blog_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+
+            'blog_description_1_images'      => 'nullable|array',
+            'blog_description_1_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048',    
+            
+            'blog_description_2_images'      => 'nullable|array',
+            'blog_description_2_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048',             
+
+            'blog_description_3_images'      => 'nullable|array',
+            'blog_description_3_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+
+            'blog_description_4_images'      => 'nullable|array',
+            'blog_description_4_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         ];
     }
 }

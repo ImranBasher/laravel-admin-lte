@@ -12,7 +12,7 @@
                         <div class="wptb-breadcrumb-wrap">
                             <ul class="wptb-breadcrumb">
                                 <li><a href="{{route('home')}}">Home</a></li>
-                                <li><span><a href="{{route('blog.list')}}">Blog List</a></span></li>
+                                <li><a href="{{route('blog.list')}}">Blog List</a></li>
                             </ul>
                         </div>
                     </div>

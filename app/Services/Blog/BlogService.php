@@ -31,6 +31,31 @@ public function getAllBlog($paginatePluckOrGet = null, array $relationships = []
             $data = $request->validated();
             $blog = Blog::create($data);
 
+
+            $imageFields = [
+                'blog_images'               => 'blogs/blog_images',
+                'blog_description_1_images'      => 'blogs/description_1_images',
+                'blog_description_3_images'      => 'blogs/description_3_images',
+                'blog_description_2_images'      => 'blogs/description_2_images',
+                'blog_description_4_images'      => 'blogs/description_4_images',
+            ];
+
+
+
+            foreach ($imageFields as $field => $directory) {
+
+                if ($request->hasFile($field)) {
+                    $data[$field] = singlePhotoUpload($request->file($field), $directory);
+
+                    MultipleImage::create([
+                        'blog_id' => $blog->id,
+                        'image' => $data[$field],
+                        'type' => $field,
+                        'purpose' => 'sub_service_category'
+                    ]);
+                }
+            }
+
             if ($request->hasFile('blog_images')) {
 
                 foreach ($request->file('blog_images') as $file) {

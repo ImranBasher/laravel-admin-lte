@@ -15,13 +15,16 @@ class Blog extends Model
         'title',
         'slug',
         'author_id',
-        'description',
+        'description_1',
+        'description_3',
+        'description_2',
+        'description_4',
         'published_at',
         'status',
     ];
 
     protected $casts = [
-        'status' => 'boolean',
+        'status'        => 'boolean',
         'published_at' => 'date'
     ];
 
