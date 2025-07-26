@@ -33,42 +33,34 @@ public function getAllBlog($paginatePluckOrGet = null, array $relationships = []
 
 
             $imageFields = [
-                'blog_images'               => 'blogs/blog_images',
+                'blog_images'                    => 'blogs/blog_images',
                 'blog_description_1_images'      => 'blogs/description_1_images',
                 'blog_description_3_images'      => 'blogs/description_3_images',
                 'blog_description_2_images'      => 'blogs/description_2_images',
                 'blog_description_4_images'      => 'blogs/description_4_images',
+                'blog_description_5_images'      => 'blogs/description_5_images',
+                'blog_description_6_images'      => 'blogs/description_6_images',
+                'blog_description_7_images'      => 'blogs/description_7_images',
             ];
 
 
 
-            foreach ($imageFields as $field => $directory) {
+                foreach ($imageFields as $field => $directory) {
+                    if ($request->hasFile($field)) {
+                        foreach ($request->file($field) as $file) {
+                            $path = singlePhotoUpload($file, $directory);
 
-                if ($request->hasFile($field)) {
-                    $data[$field] = singlePhotoUpload($request->file($field), $directory);
-
-                    MultipleImage::create([
-                        'blog_id' => $blog->id,
-                        'image' => $data[$field],
-                        'type' => $field,
-                        'purpose' => 'sub_service_category'
-                    ]);
+                            MultipleImage::create([
+                                'blog_id' => $blog->id,
+                                'image'   => $path,
+                                'type'    => $field,
+                                'purpose' => $field
+                            ]);
+                        }
+                    }
                 }
-            }
 
-            if ($request->hasFile('blog_images')) {
 
-                foreach ($request->file('blog_images') as $file) {
-                    $path = singlePhotoUpload($file, 'blog/blog/blog_images');
-
-                    MultipleImage::create([
-                        'blog_id' => $blog->id,
-                        'image'   => $path,
-                        'type'    => 'blog_images',
-                        'purpose' => 'blog'
-                    ]);
-                }
-            }
 
             return $blog;
         } catch (\Throwable $e) {
@@ -85,22 +77,46 @@ public function getAllBlog($paginatePluckOrGet = null, array $relationships = []
             $blog->update($data);
 
 
+            $imageFields = [
+                'blog_images'                    => 'blogs/blog_images',
+                'blog_description_1_images'      => 'blogs/description_1_images',
+                'blog_description_3_images'      => 'blogs/description_3_images',
+                'blog_description_2_images'      => 'blogs/description_2_images',
+                'blog_description_4_images'      => 'blogs/description_4_images',
+                'blog_description_5_images'      => 'blogs/description_5_images',
+                'blog_description_6_images'      => 'blogs/description_6_images',
+                'blog_description_7_images'      => 'blogs/description_7_images',
+            ];
 
-            if ($request->hasFile('blog_images')) {
-                MultipleImage::where('sub_service_category_id', $blog->id)
-                    ->where('type', 'blog_images')->delete();
 
-                foreach ($request->file('blog_images') as $file) {
-                    $path = singlePhotoUpload($file, 'blog/blog/blog_images');
 
-                    MultipleImage::create([
-                        'blog_id' => $blog->id,
-                        'image'   => $path,
-                        'type'    => 'blog_images',
-                        'purpose' => 'blog'
-                    ]);
+            foreach ($imageFields as $field => $directory) {
+                if ($request->hasFile($field)) {
+                    // 🧹 Step 1: Delete old images of this field
+                    $oldImages = MultipleImage::where('blog_id', $blog->id)
+                                    ->where('type', $field)
+                                    ->where('purpose', $field)
+                                    ->get();
+
+                    foreach ($oldImages as $oldImage) {
+                        deleteSingleImage($oldImage); 
+                    }
+
+                    // 📤 Step 2: Upload new images
+                    foreach ($request->file($field) as $file) {
+                        $path = singlePhotoUpload($file, $directory);
+
+                        MultipleImage::create([
+                            'blog_id' => $blog->id,
+                            'image'   => $path,
+                            'type'    => $field,
+                            'purpose' => $field, 
+                        ]);
+                    }
                 }
             }
+
+
 
             return $blog;
         } catch (\Throwable $e) {
@@ -108,6 +124,26 @@ public function getAllBlog($paginatePluckOrGet = null, array $relationships = []
             throw $e;
         }
     }
+
+    public function deleteImageById($id)
+    {
+        try {
+            $image = MultipleImage::findOrFail($id);
+
+            // Use your helper function
+            deleteSingleImage($image);
+
+            return response()->json(['message' => 'Image deleted successfully.']);
+        } catch (\Exception $e) {
+            Log::error('Error deleting blog image', ['exception' => $e]);
+
+            return response()->json(['message' => 'Failed to delete image.'], 500);
+        }
+    }
+
+
+
+
 
     public function destroyBlog($id)
     {
@@ -123,5 +159,9 @@ public function getAllBlog($paginatePluckOrGet = null, array $relationships = []
             return false;
         }
     }
+
+
+
+
 }
 

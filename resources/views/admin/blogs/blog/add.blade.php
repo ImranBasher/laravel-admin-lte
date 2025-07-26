@@ -23,7 +23,7 @@
 
                     <div class="form-group">
                         <label>Author Name</label>
-                        <input type="text" name="author" class="form-control" value="{{ old('author') }}" required>
+                        <input type="text" name="author" class="form-control" value="{{ old('author') }}" placeholder="(max 20 letter)">
                     </div>
                     {{-- <div class="form-group">
                         <label>Author</label>
@@ -65,7 +65,7 @@
 
                     <div class="form-group">
                         <label>Description 2</label>
-                        <textarea name="description_1" class="form-control ckeditor">{{ old('description_2') }}</textarea>
+                        <textarea name="description_2" class="form-control ckeditor">{{ old('description_2') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Description_2 Images</label>
@@ -91,8 +91,35 @@
                         <label>Description_4 Images</label>
                         <input type="file" name="blog_description_4_images[]" class="form-control-file" multiple>
                     </div>
+
+                    <div class="form-group">
+                        <label>Description 5</label>
+                        <textarea name="description_5" class="form-control ckeditor">{{ old('description_5') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Description_5 Images</label>
+                        <input type="file" name="blog_description_5_images[]" class="form-control-file" multiple>
+                    </div>                    
+                    
+                    <div class="form-group">
+                        <label>Description 6</label>
+                        <textarea name="description_6" class="form-control ckeditor">{{ old('description_6') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Description_6 Images</label>
+                        <input type="file" name="blog_description_6_images[]" class="form-control-file" multiple>
+                    </div> 
                     
                     
+                    <div class="form-group">
+                        <label>Description 7</label>
+                        <textarea name="description_7" class="form-control ckeditor">{{ old('description_7') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Description_7 Images</label>
+                        <input type="file" name="blog_description_7_images[]" class="form-control-file" multiple>
+                    </div> 
+
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-info">Create Blog</button>

@@ -23,12 +23,19 @@ class BlogRequest extends FormRequest
     {
         return [
             'title'            => 'required|string|max:255',
+            'short_title'      => 'required|string|max:255',
+            'author'           => 'nullable|string|max:20',
             'description_1'    => 'nullable|string',
             'description_2'    => 'nullable|string',
             'description_3'    => 'nullable|string',
             'description_4'    => 'nullable|string',
-            'blog_images'      => 'nullable|array',
-            'blog_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description_5'    => 'nullable|string',
+            'description_6'    => 'nullable|string',
+            'description_7'    => 'nullable|string',
+
+
+            'blog_images'                   => 'nullable|array',
+            'blog_images.*'                 => 'image|mimes:jpeg,png,jpg,gif|max:2048',
 
             'blog_description_1_images'      => 'nullable|array',
             'blog_description_1_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048',    
@@ -41,6 +48,24 @@ class BlogRequest extends FormRequest
 
             'blog_description_4_images'      => 'nullable|array',
             'blog_description_4_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+
+
+            'blog_description_5_images'      => 'nullable|array',
+            'blog_description_5_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+
+
+            'blog_description_6_images'      => 'nullable|array',
+            'blog_description_6_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+
+
+            'blog_description_7_images'      => 'nullable|array',
+            'blog_description_7_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+
+
+
+
+
+
         ];
     }
 }

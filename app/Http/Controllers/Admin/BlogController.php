@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogRequest;
 use App\Services\Blog\BlogService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
@@ -69,6 +70,28 @@ protected $blogService;
         } catch (\Throwable $e) {
             Log::error('Error deleting blog', ['exception' => $e]);
             return back()->withErrors(['error' => 'Failed to delete blog.']);
+        }
+    }
+
+    public function deleteImage($id, BlogService $blogService)
+    {
+        try {
+            DB::beginTransaction();
+            $blogService->deleteImageById($id);
+            DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Image deleted successfully.'
+            ]);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Failed to delete image.',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 }
