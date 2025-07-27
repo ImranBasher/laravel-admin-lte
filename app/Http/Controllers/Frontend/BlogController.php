@@ -9,8 +9,19 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
     public function index(){
-        $data['blogs'] = Blog::where('status', 1)->get();
-
+        $data['blogs'] = Blog::where('status', 1)->with(['multipleImages'])->paginate(6);;
+        $data['recentPosts'] = Blog::inRandomOrder()->with(['multipleImages'])->take(3)->get();
         return view('frontend.blog.blog_list')->with($data);
     }
+
+    public function show($id)
+    {
+    $blog = Blog::with('multipleImages')->findOrFail($id);
+    $recentPosts = Blog::inRandomOrder()->with('multipleImages')->take(3)->get();
+
+    return view('frontend.blog.blog_details', compact('blog', 'recentPosts'));
+    }
+
+
+
 }

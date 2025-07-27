@@ -13,13 +13,16 @@ class Blog extends Model
 
     protected $fillable = [
         'title',
-        'slug',
+        'short_title',
+        'author',
         'author_id',
         'description_1',
         'description_3',
         'description_2',
         'description_4',
-        'published_at',
+        'description_5',
+        'description_6',
+        'description_7',
         'status',
     ];
 

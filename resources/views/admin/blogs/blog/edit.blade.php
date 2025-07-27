@@ -69,7 +69,7 @@
 
                         <div class="form-group">
                             <label>Description 1</label>
-                            <textarea name="description_1" class="form-control ckeditor">{{ old('description_1', $blog->description_1) }}</textarea>
+                            <textarea name="description_1" id="description_1" class="form-control ckeditor">{{ old('description_1', $blog->description_1) }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Description_1 Images</label>
@@ -91,7 +91,7 @@
 
                         <div class="form-group">
                             <label>Description 2</label>
-                            <textarea name="description_2" class="form-control ckeditor">{{ old('description_2', $blog->description_2) }}</textarea>
+                            <textarea name="description_2" id="description_2" class="form-control ckeditor">{{ old('description_2', $blog->description_2) }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Description_2 Images</label>
@@ -112,7 +112,7 @@
 
                         <div class="form-group">
                             <label>Description 3</label>
-                            <textarea name="description_3" class="form-control ckeditor">{{ old('description_3', $blog->description_3) }}</textarea>
+                            <textarea name="description_3" id="description_3" class="form-control ckeditor">{{ old('description_3', $blog->description_3) }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Description_3 Images</label>
@@ -134,7 +134,7 @@
 
                         <div class="form-group">
                             <label>Description 4</label>
-                            <textarea name="description_4" class="form-control ckeditor">{{ old('description_4', $blog->description_4) }}</textarea>
+                            <textarea name="description_4" id="description_4" class="form-control ckeditor">{{ old('description_4', $blog->description_4) }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Description_4 Images</label>
@@ -154,7 +154,7 @@
 
                         <div class="form-group">
                             <label>Description 5</label>
-                            <textarea name="description_5" class="form-control ckeditor">{{ old('description_5', $blog->description_5) }}</textarea>
+                            <textarea name="description_5" id="description_5" class="form-control ckeditor">{{ old('description_5', $blog->description_5) }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Description_5 Images</label>
@@ -175,7 +175,7 @@
 
                         <div class="form-group">
                             <label>Description 6</label>
-                            <textarea name="description_6" class="form-control ckeditor">{{ old('description_6', $blog->description_6) }}</textarea>
+                            <textarea name="description_6" id="description_6" class="form-control ckeditor">{{ old('description_6', $blog->description_6) }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Description_6 Images</label>
@@ -195,7 +195,7 @@
 
                         <div class="form-group">
                             <label>Description 7</label>
-                            <textarea name="description_7" class="form-control ckeditor">{{ old('description_7', $blog->description_7) }}</textarea>
+                            <textarea name="description_7" id="description_7" class="form-control ckeditor">{{ old('description_7', $blog->description_7) }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Description_7 Images</label>
@@ -216,7 +216,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-info">Update Blog</button>
+                        <button class="btn btn-info"  type="submit" >Update Blog</button>
                     </div>
                 </form>
             </div>
@@ -224,9 +224,47 @@
     </div>
 @endsection
 
+
 @section('scripts')
+    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+    <script>
+
+
+        document.querySelectorAll('.ckeditor').forEach(el => {
+            if (!el.id) {
+                el.id = 'ckeditor-' + Math.random().toString(36).substring(2, 15);
+            }
+
+            // Prevent CKEditor duplication
+            if (!CKEDITOR.instances[el.id]) {
+                CKEDITOR.replace(el.id);
+            }
+        });
+    </script>
+@endsection
+
+
+{{-- @section('scripts')
     <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
     <script>
         document.querySelectorAll('.ckeditor').forEach(el => CKEDITOR.replace(el));
     </script>
-@endsection
+@endsection  --}}
+
+
+{{-- @section('scripts')
+    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+    <script>
+        document.querySelectorAll('.ckeditor').forEach(el => {
+            if (!el.id) {
+                // Give each textarea a unique ID if not already present
+                el.id = 'ckeditor-' + Math.random().toString(36).substring(2, 15);
+            }
+
+            // Only replace if an instance doesn't already exist
+            if (!CKEDITOR.instances[el.id]) {
+                CKEDITOR.replace(el.id);
+            }
+        });
+    </script>
+@endsection --}}

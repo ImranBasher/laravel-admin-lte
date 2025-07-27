@@ -87,30 +87,31 @@
                                     </li>
                                     <li class="menu-item menu-item-has-children"><a href="#">Pages</a>
                                         <ul class="sub-menu">
-                                            <li class="menu-item"><a href="about.html">About Us</a></li>
-                                            <li class="menu-item menu-item-has-children"><a href="#">Case Studies</a>
+                                            <li class="menu-item"><a href="{{route('about.us')}}">About Us</a></li>
+                                            {{-- <li class="menu-item menu-item-has-children"><a href="#">Case Studies</a>
                                                 <ul class="sub-menu">
                                                     <li class="menu-item"><a href="case.html">Case List</a></li>
                                                     <li class="menu-item"><a href="case-details.html">Case Details</a></li>
                                                 </ul>
-                                            </li>
-                                            <li class="menu-item menu-item-has-children"><a href="#">Our Team</a>
-                                                <ul class="sub-menu">
+                                            </li> --}}
+                                            <li class="menu-item"><a href="#">Our Team</a>
+                                            {{-- <li class="menu-item menu-item-has-children"><a href="#">Our Team</a> --}}
+                                                {{-- <ul class="sub-menu">
                                                     <li class="menu-item"><a href="team-1.html">Team Grid One</a></li>
                                                     <li class="menu-item"><a href="team-2.html">Team Grid Two</a></li>
                                                     <li class="menu-item"><a href="team-details.html">Team Details</a></li>
-                                                </ul>
+                                                </ul> --}}
                                             </li>
-                                            <li class="menu-item menu-item-has-children"><a href="#">Shop</a>
+                                            {{-- <li class="menu-item menu-item-has-children"><a href="#">Shop</a>
                                                 <ul class="sub-menu">
                                                     <li class="menu-item"><a href="shop.html">Shop</a></li>
                                                     <li class="menu-item"><a href="shop-product.html">Product Details</a></li>
                                                     <li class="menu-item"><a href="shop-cart.html">Cart</a></li>
                                                     <li class="menu-item"><a href="shop-checkout.html">Checkout</a></li>
                                                 </ul>
-                                            </li>
-                                            <li class="menu-item"><a href="coming-soon.html">Coming Soon</a></li>
-                                            <li class="menu-item"><a href="404.html">404 Error</a></li>
+                                            </li> --}}
+                                            {{-- <li class="menu-item"><a href="coming-soon.html">Coming Soon</a></li>
+                                            <li class="menu-item"><a href="404.html">404 Error</a></li> --}}
                                             <li class="menu-item"><a href="login.html">Login</a></li>
                                         </ul>
                                     </li>
@@ -154,15 +155,15 @@
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-has-children"><a href="#">Contact</a>
-                                        <ul class="sub-menu">
+                                        {{-- <ul class="sub-menu">
                                             <li class="menu-item"><a href="contact-1.html">Contact One</a></li>
                                             <li class="menu-item"><a href="contact-2.html">Contact Two</a></li>
-                                        </ul>
+                                        </ul> --}}
                                     </li>
                                 </ul>
                             </div>
 
-                            <div class="wptb-header--cart">
+                            {{-- <div class="wptb-header--cart">
                                 <a href="#" class="wptb-cart-icon"><i class="bi bi-cart"></i></a>
                                 <div class="wptb-cart-box">
                                     <div class="wptb-grand-total">
@@ -182,7 +183,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="wptb-icon-box1 live-chat d-none d-md-block">
                                 <div class="wptb-item--inner flex-start">

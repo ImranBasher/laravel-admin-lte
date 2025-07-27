@@ -9,6 +9,7 @@ use App\Models\ServiceSection;
 use App\Models\ScrollingHeading;
 use App\Models\SubServiceCategory;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\WhyChoose;
 
 class HomeController extends Controller
@@ -34,6 +35,12 @@ class HomeController extends Controller
         return view('frontend.index')->with($data);
     }
 
+
+
+    public function aboutUs(){
+        $data['aboutus'] = AboutUs::where('status', 1)->with('multipleImages')->first();
+        return view('frontend.about_us')->with($data);
+    }
 
 
     

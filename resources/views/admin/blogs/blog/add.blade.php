@@ -122,7 +122,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-info">Create Blog</button>
+                    <button class="btn btn-info"  type="submit">Create Blog</button>
                 </div>
             </form>
         </div>

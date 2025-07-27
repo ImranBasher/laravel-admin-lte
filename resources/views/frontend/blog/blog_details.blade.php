@@ -12,7 +12,8 @@
                         <div class="wptb-breadcrumb-wrap">
                             <ul class="wptb-breadcrumb">
                                 <li><a href="{{route('home')}}">Home</a></li>
-                                <li><span><a href="{{route('blog.ph')}}">Blog Details</a></span></li>
+                                <li><a href="{{route('blog.list')}}">Blog List</a></li>
+                                <li><span>Blog Details</span></li>
                                 
                             </ul>
                         </div>
@@ -28,28 +29,292 @@
                         <div class="col-lg-9 col-md-8 pe-md-5">
                             <div class="blog-details-inner">
                                 <div class="post-content">
+                                    <figure class="block-gallery mt-4">
+                                                                @php
+                                                                    $firstImage = $blog->multipleImages->where('purpose', 'blog_images')->first();
+                                                                @endphp
+                                                                @if ($firstImage)
+                                                                    <img src="{{ asset('storage/' . $firstImage->image) }}" alt="{{ $blog->title }}">
+                                                                @else
+                                                                    <img src="{{ asset('assets/img/default-blog.jpg') }}" alt="No image">
+                                                                @endif
+
+                                        </figure>
+
 									<div class="post-header">
-										<h2 class="post-title">What are the first steps when your car breakdown middle of the road</h2>
+										<h2 class="post-title">{{ $blog->short_title }}</h2>
                                         <div class="wptb-item--meta d-flex align-items-center gap-4">
-                                            <div class="wptb-item wptb-item--author"><a href="#"><i class="bi bi-pencil-square"></i> <span>Marina Willums</span></a></div>
-                                            <div class="wptb-item wptb-item--date"><a href="#"><i class="bi bi-calendar3"></i> <span>March 28, 2022</span></a></div>
-                                            <div class="wptb-item wptb-item--comments"><a href="#comments"><i class="bi bi-chat-square-text"></i> <span>2k</span></a></div>
-                                            <div class="wptb-item wptb-item--hits"><a href="#"><i class="bi bi-eye"></i> <span>1.38k</span></a></div>
+                                            <div class="wptb-item wptb-item--author"><a href="#"><i class="bi bi-pencil-square"></i> <span>{{ $blog->author ?? 'Unknown' }}</span></a></div>
+                                            <div class="wptb-item wptb-item--date"><a href="#"><i class="bi bi-calendar3"></i> <span>{{ $blog->created_at->format('F d, Y') }}</span></a></div>
+                                            {{-- <div class="wptb-item wptb-item--comments"><a href="#comments"><i class="bi bi-chat-square-text"></i> <span>2k</span></a></div> --}}
+                                            {{-- <div class="wptb-item wptb-item--hits"><a href="#"><i class="bi bi-eye"></i> <span>1.38k</span></a></div> --}}
                                         </div>
 									</div>
-
+{{-- 
+                                @if(!empty($blog->description_1))
                                     <div class="intro">
-                                        <p> Our business consulting programs helps to break the performance of your business down into customers and product groups so you know exactly which customers or product groups are working and which ones aren’t you can make the changes needed to get the best results out of your business.</p>
+                                        <p>{!! $blog->description_1 !!}</p>
                                     </div>
+                                @endif --}}
 
                                     <!-- Post Image -->
-                                    <figure class="block-gallery mt-4">
-                                        <img src="assets/img/blog/details.jpg" alt="img">
-                                    </figure>
+                                    {{-- <figure class="block-gallery mt-4">
+                                        <img src="{{asset('assets/img/blog/details.jpg')}}" alt="img">
+                                    </figure> --}}
+<div class="fulltext">
+
+    
+                                @if(!empty($blog->description_1))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_1 !!}</p>
+                                    </div>
+                                @endif
+
+
+                                    @php
+                                        $desc_1_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_1_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_1_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_1_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+
+                                @if(!empty($blog->description_2))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_2 !!}</p>
+                                    </div>
+                                @endif
+
+                                
+                                    @php
+                                        $desc_2_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_2_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_2_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_2_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+
+                                @if(!empty($blog->description_3))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_3 !!}</p>
+                                    </div>
+                                @endif
+
+                                
+                                    @php
+                                        $desc_3_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_3_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_3_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_3_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+
+
+                                @if(!empty($blog->description_1))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_1 !!}</p>
+                                    </div>
+                                @endif
+
+                                
+                                    @php
+                                        $desc_1_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_1_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_1_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_1_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+                                @if(!empty($blog->description_4))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_4 !!}</p>
+                                    </div>
+                                @endif
+
+                                
+                                    @php
+                                        $desc_4_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_4_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_4_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_4_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+
+                                @if(!empty($blog->description_5))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_5 !!}</p>
+                                    </div>
+                                @endif
+
+                                
+                                    @php
+                                        $desc_5_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_5_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_5_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_5_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+
+
+                                @if(!empty($blog->description_6))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_6 !!}</p>
+                                    </div>
+                                @endif
+
+                                
+                                    @php
+                                        $desc_6_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_6_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_6_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_6_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+
+
+
+                                @if(!empty($blog->description_7))
+                                    <div class="intro">
+                                        <p>{!! $blog->description_7 !!}</p>
+                                    </div>
+                                @endif
+
+                                
+                                    @php
+                                        $desc_7_Images = $blog->multipleImages
+                                            ->where('purpose', 'blog_description_7_images')
+                                            ->filter(function ($item) {
+                                                return !empty($item->image);
+                                            });
+                                    @endphp
+
+                                    @if($desc_7_Images->count())
+                                        <figure class="block-gallery mt-4">
+                                            <ul class="blocks-gallery-grid">
+                                                @foreach($desc_7_Images as $img)
+                                                    <li class="blocks-gallery-item">
+                                                        <figure>
+                                                            <img src="{{ asset('storage/' . $img->image) }}" alt="desc image">
+                                                        </figure>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </figure>
+                                    @endif
+
+
+
+
+</div>
+
 
 									<div class="fulltext">
-                                        <h4 class="widget-title">Repair Tips</h4>
-										<p> Our business consulting programs helps to break the performance of your business down into customers and product groups so you know exactly which customers or product groups are working and which ones aren’t you can make the changes needed to get the best results out of your business.</p>
+                                        {{-- <h4 class="widget-title">Repair Tips</h4> --}}
+										{{-- <p> Our business consulting programs helps to break the performance of your business down into customers and product groups so you know exactly which customers or product groups are working and which ones aren’t you can make the changes needed to get the best results out of your business.</p>
 										
                                         <ul class="point-order">
                                             <li><i class="bi bi-check2-all"></i> We seize opportunities to innovate and grow</li>
@@ -103,10 +368,10 @@
                                                     <li class="linkedin"><a href="#">Linkedin</a></li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <!-- Comment List -->
-                                        <div class="comments-area">
+                                        {{-- <div class="comments-area">
 											<h3 class="comments-title">Comments</h3>
 											<ul class="comment-list">
 												<li class="comment even thread-even depth-1">
@@ -199,7 +464,10 @@
 													</div>
 												</div>
 											</form>
-										</div>
+										</div> --}}
+
+
+
                                     </div>
 								</div>
                             </div>
@@ -211,7 +479,7 @@
 
                             <div class="sidebar">
 								
-                                <div class="widget widget_block widget_search">
+                                {{-- <div class="widget widget_block widget_search">
                                     <form method="get" class="wp-block-search">
                                         <div class="wp-block-search__inside-wrapper ">
                                             <input type="search" class="wp-block-search__input" name="search" value="" placeholder="Search" required="">
@@ -236,10 +504,10 @@
 											</ul>
 										</div>
 									</div>
-								</div>
+								</div> --}}
                                 <!-- end widget -->
 
-                                <div class="widget widget_block">
+                                {{-- <div class="widget widget_block">
                                     <h2 class="widget-title">
                                         Archive
                                     </h2>
@@ -263,10 +531,10 @@
                                             </div>
                                         </form>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- end widget -->
 
-                                <div class="widget widget_block">
+                                {{-- <div class="widget widget_block">
                                     <div class="wp-block-group__inner-container">
                                         <h2 class="widget-title">Categories</h2>
                                         <ul class="wp-block-categories-list wp-block-categories">
@@ -277,10 +545,10 @@
                                             <li class="cat-item"><a href="#">TIPS & TRICKS</a> (21)</li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- end widget -->
 
-                                <div class="widget widget_block">
+                                {{-- <div class="widget widget_block">
                                     <div class="wp-block-group__inner-container">
                                         <h2 class="widget-title">Recent Posts</h2>
                                         <ul class="wp-block-latest-posts__list wp-block-latest-posts">
@@ -315,7 +583,38 @@
 											</li>
                                         </ul>
                                     </div>
+                                </div> --}}
+
+                                <div class="widget widget_block">
+                                    <div class="wp-block-group__inner-container">
+                                        <h2 class="widget-title">Recent Posts</h2>
+                                        <ul class="wp-block-latest-posts__list wp-block-latest-posts">
+                                            @foreach($recentPosts as $post)
+                                            <li>
+												<div class="latest-posts-image" style="width: 50px; height: 35px; overflow: hidden;">
+
+                                                             @php
+                                                                    $firstImage = $post->multipleImages->where('purpose', 'blog_images')->first();
+                                                             @endphp
+                                                                @if ($firstImage)
+                                                                    <img src="{{ asset('storage/' . $firstImage->image) }}" alt="{{ $post->title }}">
+                                                                @else
+                                                                    <img src="{{ asset('assets/img/default-blog.jpg') }}" alt="No image">
+                                                                @endif
+													
+												</div>
+												<div class="latest-posts-content">
+													<h5><a href="{{ route('frontend.blog.details', $post->id) }}">{{ $post->short_title }}</a></h5>
+													<h6>{{ $post->created_at->format('F d, Y') }}</h6>
+												</div>
+											</li>
+
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
+
+
                                 <!-- end widget -->
 
                                 <div class="widget widget_block">

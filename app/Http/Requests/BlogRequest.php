@@ -21,6 +21,8 @@ class BlogRequest extends FormRequest
      */
     public function rules(): array
     {
+
+  
         return [
             'title'            => 'required|string|max:255',
             'short_title'      => 'required|string|max:255',
@@ -35,36 +37,31 @@ class BlogRequest extends FormRequest
 
 
             'blog_images'                   => 'nullable|array',
-            'blog_images.*'                 => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'blog_images.*'                 => 'image|mimes:jpeg,png,jpg,gif',
 
             'blog_description_1_images'      => 'nullable|array',
-            'blog_description_1_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048',    
+            'blog_description_1_images.*'    => 'image|mimes:jpeg,png,jpg,gif',    
             
             'blog_description_2_images'      => 'nullable|array',
-            'blog_description_2_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048',             
+            'blog_description_2_images.*'    => 'image|mimes:jpeg,png,jpg,gif',             
 
             'blog_description_3_images'      => 'nullable|array',
-            'blog_description_3_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'blog_description_3_images.*'    => 'image|mimes:jpeg,png,jpg,gif', 
 
             'blog_description_4_images'      => 'nullable|array',
-            'blog_description_4_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'blog_description_4_images.*'    => 'image|mimes:jpeg,png,jpg,gif', 
 
 
             'blog_description_5_images'      => 'nullable|array',
-            'blog_description_5_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'blog_description_5_images.*'    => 'image|mimes:jpeg,png,jpg,gif', 
 
 
             'blog_description_6_images'      => 'nullable|array',
-            'blog_description_6_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'blog_description_6_images.*'    => 'image|mimes:jpeg,png,jpg,gif', 
 
 
             'blog_description_7_images'      => 'nullable|array',
-            'blog_description_7_images.*'    => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
-
-
-
-
-
+            'blog_description_7_images.*'    => 'image|mimes:jpeg,png,jpg,gif', 
 
         ];
     }

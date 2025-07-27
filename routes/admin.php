@@ -56,7 +56,7 @@ Route::prefix("admin")->name("admin.")->middleware('admin.auth')->group(function
     Route::resource('footer_banners',         FooterBannerController::class)->names('footer_banners');
     Route::resource('customer_reviews',       CustomerReviewController::class)->names('customer_reviews');
 
-Route::delete('/admin/blogs/images/{id}', [BlogController::class, 'deleteImage'])->name('blogs.images.destroy');
+Route::delete('/admin/blogs/images/{id}',     [BlogController::class, 'deleteImage'])->name('blogs.images.destroy');
 
     
 });
