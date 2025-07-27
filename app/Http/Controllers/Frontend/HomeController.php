@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\AboutUs;
+use App\Models\WhyChoose;
 use App\Models\MainBanner;
 use App\Models\Motivation;
 use Illuminate\Http\Request;
 use App\Models\ServiceSection;
+use App\Models\ServiceCategory;
 use App\Models\ScrollingHeading;
 use App\Models\SubServiceCategory;
 use App\Http\Controllers\Controller;
-use App\Models\AboutUs;
-use App\Models\WhyChoose;
 
 class HomeController extends Controller
 {
@@ -38,7 +39,10 @@ class HomeController extends Controller
 
 
     public function aboutUs(){
-        $data['aboutus'] = AboutUs::where('status', 1)->with('multipleImages')->first();
+        $data['about_us'] = AboutUs::where('status', 1)->with('multipleImages')->first();
+        $data['services_category']  = SubServiceCategory::where('status', 1)->inRandomOrder()->take(3)->get();
+        $data['categories']  = ServiceCategory::where('status', 1)->with('multipleImages')->inRandomOrder()->take(6)->get();
+
         return view('frontend.about_us')->with($data);
     }
 

@@ -46,6 +46,13 @@
     text-transform: uppercase;
     margin-bottom: 0px;
 }
+
+.wptb-item--icon img {
+    width: 100px;
+}
+
+
+
 .wptb-features-author .wptb-item--name {
     color: var(--color-one);
     font-size: 24px;

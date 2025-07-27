@@ -34,15 +34,26 @@
 
                     <div class="wptb-heading mb-0 mt-3">
                         <div class="wptb-item--inner">
-                            <h1 class="wptb-item--title"> About {{}}</h1>
+
+@php
+    $fullCompanyName = trim(
+        ($general_setting->company_name_start ?? '') . ' ' .
+        ($general_setting->company_name_middle ?? '') . ' ' .
+        ($general_setting->company_name_end ?? '')
+    );
+@endphp
+
+                            <h1 class="wptb-item--title"> About {{ $fullCompanyName }}</h1>
                             
-                            <p class="wptb-item--description">When you bring your vehicle to Ducatibox Car Mechanic Center, you can rest easy knowing that your vehicle is in professional hands. We take every possible step to ensure that your experience with us is pleasant and efficient.When you bring your vehicle to Ducatibox Car Mechanic Center, you can rest easy knowing that your vehicle is in professional hands. We take every possible step to ensure that your experience with us is pleasant and efficient.When you bring your vehicle to Ducatibox Car Mechanic Center, you can rest easy knowing that your vehicle is in professional hands. </p>
+                            <p class="wptb-item--description">{{$about_us->description_start}} </p>
+                            <p class="wptb-item--description">{{$about_us->description_middle}} </p>
+                            <p class="wptb-item--description">{{$about_us->description_end}} </p>
                             
-                            <h5 class="text-one mt-2 mb-4">
+                            {{-- <h5 class="text-one mt-2 mb-4">
                                 We understand that wellbeing is a multifaceted concept, which is why we offer holistic solutions that integrate physical, mental, and spiritual fitness.
                             </h5>
 
-                            <p class="wptb-item--description">When you bring your vehicle to Ducatibox Car Mechanic Center, you can rest easy knowing that your vehicle is in professional hands. We take every possible step to ensure that your experience with us is pleasant and efficient.</p>
+                            <p class="wptb-item--description">When you bring your vehicle to Ducatibox Car Mechanic Center, you can rest easy knowing that your vehicle is in professional hands. We take every possible step to ensure that your experience with us is pleasant and efficient.</p> --}}
                         </div>
                     </div>
 
@@ -54,7 +65,27 @@
                 <div class="container">
                     <div class="wptb-funfacts--inner mb-0">
                         <div class="row">
+
+                        @foreach($services_category as $category)   
                             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <div class="wptb-counter1 style1 wow skewIn">
+                                    <div class="wptb-item--inner">
+                                        <div class="wptb-item--icon">
+
+                                                @if(!empty($category->svg_icon))
+                                                    {!! $category->svg_icon !!}
+                                                @endif
+                                        </div>
+                                        <div class="wptb-item--holder">
+                                            <div class="wptb-item--text">{{ $category->sub_service_name }}</div>
+                                            <div class="wptb-item--value"><span class="odometer" data-count="{{ $category->quantity }}"></span><span class="suffix">+</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                            {{-- <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                 <div class="wptb-counter1 style1 wow skewIn">
                                     <div class="wptb-item--inner">
                                         <div class="wptb-item--icon">
@@ -118,7 +149,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+
+
                         </div>
                     </div>
                 </div>
@@ -135,7 +168,7 @@
                             <h6 class="wptb-item--subtitle">
                                 Our Service List
                             </h6>
-                            <h1 class="wptb-item--title"> Why Choose Ducati<span>box...</span></h1>
+                            <h1 class="wptb-item--title"> Why Choose <span>{{ $fullCompanyName }}</span></h1>
                             <div class="wptb-item--divider"></div>
                         </div>
                     </div>
@@ -143,20 +176,32 @@
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-sm-6 pe-lg-5">
                             <!-- Iconbox Start -->
+
+                            @foreach ($categories->slice(0, 3) as $category )
+                                
+                            
                             <div class="wptb-icon-box2 style2 text-lg-end wow fadeInRight">
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--holder">
                                         <div class="wptb-item--icon">
-                                            <img src="{{asset('assets/img/services/icon-1.png')}}" alt="img">
+
+                                @php
+                                    $logoFirst = $category->multipleImages->where('type', 'logo_first')->first();
+                                @endphp
+
+
+                                             <img src="{{ $logoFirst ? asset('storage/' . $logoFirst->image) : asset('assets/img/services/icon-1.png') }}" alt="{{ $category->service_name }}"
+                                             >
                                         </div>
-                                        <h3 class="wptb-item--title">Fitness Checking facility</h3>
-                                        <p class="wptb-item--description mb-0"> Take advantage of our spacious gym equipped with a wide range of gym fitness  machines so you can achieve the maximum  benefits from</p>
+                                        <h3 class="wptb-item--title">{{ $category->service_name }}</h3>
+                                        <p class="wptb-item--description mb-0"> {{ $category->short_title ?? 'No description available.' }}</p>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
 
                             <!-- Iconbox Start -->
-                            <div class="wptb-icon-box2 style2 text-lg-end wow fadeInRight">
+                            {{-- <div class="wptb-icon-box2 style2 text-lg-end wow fadeInRight">
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--holder">
                                         <div class="wptb-item--icon">
@@ -166,10 +211,10 @@
                                         <p class="wptb-item--description mb-0"> Take advantage of our spacious gym equipped with a wide range of gym fitness  machines so you can achieve the maximum  benefits from</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- Iconbox Start -->
-                            <div class="wptb-icon-box2 style2 text-lg-end wow fadeInRight">
+                            {{-- <div class="wptb-icon-box2 style2 text-lg-end wow fadeInRight">
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--holder">
                                         <div class="wptb-item--icon">
@@ -179,7 +224,7 @@
                                         <p class="wptb-item--description mb-0"> Take advantage of our spacious gym equipped with a wide range of gym fitness  machines so you can achieve the maximum  benefits from</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="col-lg-4 col-sm-6 d-none d-lg-block">
@@ -195,20 +240,28 @@
 
                         <div class="col-lg-4 col-sm-6 ps-lg-5">
                             <!-- Iconbox Start -->
-                            <div class="wptb-icon-box2 style2 wow fadeInLeft">
-                                <div class="wptb-item--inner">
-                                    <div class="wptb-item--holder">
-                                        <div class="wptb-item--icon">
-                                            <img src="{{asset('assets/img/services/icon-4.png')}}" alt="img">
+
+                            @foreach ($categories->slice(3, 3) as $category)
+                                <div class="wptb-icon-box2 style2 wow fadeInLeft">
+                                    <div class="wptb-item--inner">
+                                        <div class="wptb-item--holder">
+                                            <div class="wptb-item--icon">
+                                            @php
+                                                $logoFirst = $category->multipleImages->where('type', 'logo_first')->first();
+                                            @endphp
+                                             <img src="{{ $logoFirst ? asset('storage/' . $logoFirst->image) : asset('assets/img/services/icon-1.png') }}" alt="{{ $category->service_name }}"
+                                             >
+
+                                            </div>
+                                            <h3 class="wptb-item--title">{{ $category->service_name }}</h3>
+                                            <p class="wptb-item--description mb-0"> {{ $category->short_title ?? 'No description available.' }}</p>
                                         </div>
-                                        <h3 class="wptb-item--title">Vehicle Parts installation</h3>
-                                        <p class="wptb-item--description mb-0"> Take advantage of our spacious gym equipped with a wide range of gym fitness  machines so you can achieve the maximum  benefits from</p>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
 
                             <!-- Iconbox Start -->
-                            <div class="wptb-icon-box2 style2 wow fadeInLeft">
+                            {{-- <div class="wptb-icon-box2 style2 wow fadeInLeft">
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--holder">
                                         <div class="wptb-item--icon">
@@ -218,10 +271,10 @@
                                         <p class="wptb-item--description mb-0"> Take advantage of our spacious gym equipped with a wide range of gym fitness  machines so you can achieve the maximum  benefits from</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- Iconbox Start -->
-                            <div class="wptb-icon-box2 style2 wow fadeInLeft">
+                            {{-- <div class="wptb-icon-box2 style2 wow fadeInLeft">
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--holder">
                                         <div class="wptb-item--icon">
@@ -231,7 +284,7 @@
                                         <p class="wptb-item--description mb-0"> Take advantage of our spacious gym equipped with a wide range of gym fitness  machines so you can achieve the maximum  benefits from</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

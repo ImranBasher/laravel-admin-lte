@@ -32,7 +32,7 @@
                             <input type="text" class="form-control" id="company_name_middle" name="company_name_middle" value="{{ old('company_name_middle', $settings->company_name_middle ?? '') }}" placeholder="Middle part of company name">
                         </div>
                     </div>
-                    
+                
                     <div class="form-group row">
                         <label for="company_name_end" class="col-sm-2 col-form-label">Company Name (End)</label>
                         <div class="col-sm-10">
