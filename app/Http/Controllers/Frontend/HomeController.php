@@ -51,5 +51,16 @@ class HomeController extends Controller
     }
 
 
+    public function contactUs(){
+
+        // return view('frontend.contact_us')->with($data);
+    }
+
+    
+    public function ourTeam(){
+
+        // return view('frontend.our_team')->with($data);
+    }
+
     
 }

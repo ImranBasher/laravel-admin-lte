@@ -34,4 +34,6 @@ Route::get('/services/{sub_service_category}', [ServiceController::class, 'showS
 
 Route::get('/blog/list', [BlogController::class, 'index'])->name('blog.list');   
 Route::get('blog/{id}',  [BlogController::class, 'show'])->name('frontend.blog.details'); 
-Route::get('/about',     [HomeController::class, 'aboutUs'])->name('about.us');   
+Route::get('/about',     [HomeController::class, 'aboutUs'])->name('about.us');  
+Route::get('contact/us', [HomeController::class, 'contactUs'])->name('contact.us');
+Route::get('our/team', [HomeController::class, 'ourTeam'])->name('our.team');
