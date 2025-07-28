@@ -5,7 +5,7 @@
 
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" name="email" class="form-control" value="{{ old('email', $worker->email ?? '') }}" required>
+    <input type="email" name="email" class="form-control" value="{{ old('email', $worker->email ?? '') }}" >
 </div>
 
 <div class="form-group">
@@ -15,7 +15,7 @@
 
 <div class="form-group">
     <label for="designation">Designation</label>
-    <input type="text" name="designation" class="form-control" value="{{ old('designation', $worker->designation ?? '') }}" required>
+    <input type="text" name="designation" class="form-control" value="{{ old('designation', $worker->designation ?? '') }}" >
 </div>
 
 <div class="form-group">

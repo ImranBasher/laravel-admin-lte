@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Worker;
 use App\Models\AboutUs;
 use App\Models\WhyChoose;
 use App\Models\MainBanner;
 use App\Models\Motivation;
 use Illuminate\Http\Request;
+use App\Models\CustomerReview;
 use App\Models\ServiceSection;
 use App\Models\ServiceCategory;
 use App\Models\ScrollingHeading;
@@ -31,7 +33,7 @@ class HomeController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->get(['id', 'name', 'color', 'background']);
         $data['why_choose'] = WhyChoose::where('status', 1)->with('multipleImages')->first();
-
+        $data['reviews'] =  CustomerReview::with(['multipleImages'])->get();
 
         return view('frontend.index')->with($data);
     }
@@ -39,9 +41,11 @@ class HomeController extends Controller
 
 
     public function aboutUs(){
-        $data['about_us'] = AboutUs::where('status', 1)->with('multipleImages')->first();
-        $data['services_category']  = SubServiceCategory::where('status', 1)->inRandomOrder()->take(3)->get();
-        $data['categories']  = ServiceCategory::where('status', 1)->with('multipleImages')->inRandomOrder()->take(6)->get();
+        $data['about_us']          = AboutUs::where('status', 1)->with('multipleImages')->first();
+        $data['services_category'] = SubServiceCategory::where('status', 1)->inRandomOrder()->take(3)->get();
+        $data['categories']        = ServiceCategory::where('status', 1)->with('multipleImages')->inRandomOrder()->take(6)->get();
+        $data['workers']           = Worker::where('status', 1)->with('multipleImages')->get();
+        $data['reviews']           =  CustomerReview::with(['multipleImages'])->get();
 
         return view('frontend.about_us')->with($data);
     }

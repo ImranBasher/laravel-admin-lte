@@ -2,6 +2,14 @@
 
 @section('content')       
 
+                            @php
+                                $fullCompanyName = trim(
+                                    ($general_setting->company_name_start ?? '') . ' ' .
+                                    ($general_setting->company_name_middle ?? '') . ' ' .
+                                    ($general_setting->company_name_end ?? '')
+                                );
+                            @endphp
+
             <!-- Slider Section -->
             <section class="wptb-slider p-0">
 				<div class="swiper-container swiper-main-slider">    
@@ -1422,11 +1430,11 @@
                                         Clients Testimonial
                                     </h6>
                                     <h1 class="wptb-item--title"> What Our Clients Say
-                                        About Ducati<span>box...</span> </h1>
+                                        About {{ $fullCompanyName }} </h1>
                                 </div>
                             </div>
                             
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="wptb-item--button text-md-end">
                                     <a class="btn-two" href="contact-1.html">
                                         <span class="btn-wrap">
@@ -1435,47 +1443,70 @@
                                         </span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 
                     <div class="swiper-container swiper-testimonial">    
                         <!-- swiper slides -->
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="wptb-testimonial1">
-                                    <div class="wptb-item--inner">
-                                        <div class="wptb-item--image">
-                                            <img src="assets/img/testimonial/1.jpg" alt="img">
-                                            <div class="wptb-item--icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="57" height="45" viewBox="0 0 57 45" fill="none">
-                                                    <path d="M51.5137 38.5537C56.8209 32.7938 56.2866 25.3969 56.2697 25.3125V2.8125C56.2697 2.06658 55.9734 1.35121 55.4459 0.823763C54.9185 0.296317 54.2031 0 53.4572 0H36.5822C33.48 0 30.9572 2.52281 30.9572 5.625V25.3125C30.9572 26.0584 31.2535 26.7738 31.781 27.3012C32.3084 27.8287 33.0238 28.125 33.7697 28.125H42.4266C42.3671 29.5155 41.9517 30.8674 41.22 32.0513C39.7913 34.3041 37.0997 35.8425 33.2156 36.6188L30.9572 37.0688V45H33.7697C41.5969 45 47.5678 42.8316 51.5137 38.5537ZM20.5566 38.5537C25.8666 32.7938 25.3294 25.3969 25.3125 25.3125V2.8125C25.3125 2.06658 25.0162 1.35121 24.4887 0.823763C23.9613 0.296317 23.2459 0 22.5 0H5.625C2.52281 0 0 2.52281 0 5.625V25.3125C0 26.0584 0.296316 26.7738 0.823762 27.3012C1.35121 27.8287 2.06658 28.125 2.8125 28.125H11.4694C11.41 29.5155 10.9945 30.8674 10.2628 32.0513C8.83406 34.3041 6.1425 35.8425 2.25844 36.6188L0 37.0688V45H2.8125C10.6397 45 16.6106 42.8316 20.5566 38.5537Z" fill="#D70006"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-            
-                                        <div class="wptb-item--holder">
-                                            <div class="wptb-item--meta-rating">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
+                            
+                                                        @foreach ($reviews as $review )
+                                                            
+                                                        
+                                                        <div class="swiper-slide">
+                                                            <div class="wptb-testimonial1 style3">
 
-                                            <p class="wptb-item--description"> “I am extremely grateful to Ducatibox Visa Consultancy for making my dream true. The helped me process my visa for Canada. It has accepted in record time. Ducatibox are amazing so I Highly recommend them.”</p>
-                                            <div class="wptb-item--meta">
-                                                <div class="wptb-item--meta-left">
-                                                    <h4 class="wptb-item--title">Helen Jordan</h4>
-                                                    <h6 class="wptb-item--designation">Chicago</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="swiper-slide">
+
+                                                                <div class="wptb-item--inner">
+                                                                    <div class="wptb-item--image">
+                                                                        @php
+                                                                            $image = $review->multipleImages->where('type', 'customer_image')->first();
+                                                                        @endphp
+
+                                                                        @if ($image)
+                                                                            <img src="{{ asset('storage/' . $image->image) }}" alt="img">
+                                                                        @endif
+
+                                                                        {{-- <img src="{{ asset('assets/img/testimonial/1.jpg') }}" alt="img"> --}}
+
+
+
+
+                                                                        <div class="wptb-item--icon">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="57" height="45" viewBox="0 0 57 45" fill="none">
+                                                                                <path d="M51.5137 38.5537C56.8209 32.7938 56.2866 25.3969 56.2697 25.3125V2.8125C56.2697 2.06658 55.9734 1.35121 55.4459 0.823763C54.9185 0.296317 54.2031 0 53.4572 0H36.5822C33.48 0 30.9572 2.52281 30.9572 5.625V25.3125C30.9572 26.0584 31.2535 26.7738 31.781 27.3012C32.3084 27.8287 33.0238 28.125 33.7697 28.125H42.4266C42.3671 29.5155 41.9517 30.8674 41.22 32.0513C39.7913 34.3041 37.0997 35.8425 33.2156 36.6188L30.9572 37.0688V45H33.7697C41.5969 45 47.5678 42.8316 51.5137 38.5537ZM20.5566 38.5537C25.8666 32.7938 25.3294 25.3969 25.3125 25.3125V2.8125C25.3125 2.06658 25.0162 1.35121 24.4887 0.823763C23.9613 0.296317 23.2459 0 22.5 0H5.625C2.52281 0 0 2.52281 0 5.625V25.3125C0 26.0584 0.296316 26.7738 0.823762 27.3012C1.35121 27.8287 2.06658 28.125 2.8125 28.125H11.4694C11.41 29.5155 10.9945 30.8674 10.2628 32.0513C8.83406 34.3041 6.1425 35.8425 2.25844 36.6188L0 37.0688V45H2.8125C10.6397 45 16.6106 42.8316 20.5566 38.5537Z" fill="#D70006"/>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+                                        
+                                                                    <div class="wptb-item--holder">
+                                                                        <div class="wptb-item--meta-rating">
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                        </div>
+                            
+                                                                        <p class="wptb-item--description"> “{{$review->customer_message}}”</p>
+                                                                        <div class="wptb-item--meta">
+                                                                            <div class="wptb-item--meta-left">
+                                                                                <h4 class="wptb-item--title">{{$review->customer_name}}</h4>
+                                                                                <h6 class="wptb-item--designation">{{$review->place}}</h6>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                            {{-- <div class="swiper-slide">
                                 <div class="wptb-testimonial1">
                                     <div class="wptb-item--inner">
                                         <div class="wptb-item--image">
@@ -1539,7 +1570,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+
+
                         </div>
                     </div>
                 </div>

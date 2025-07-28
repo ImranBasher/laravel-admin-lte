@@ -53,7 +53,7 @@ class ServiceCategoryService
                         'service_category_id' => $category->id,
                         'image' => $data[$field],
                         'type' => $field,
-                        'purpose' => 'service_category'
+                        'purpose' => $field
                     ]);
                 }
             }

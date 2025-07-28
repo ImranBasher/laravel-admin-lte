@@ -23,9 +23,9 @@ class WorkerRequest extends FormRequest
     {
     return [
         'name'        => 'required|string|max:255',
-        'email'       => 'required|email',
+        'email'       => 'nullable|email',
         'phone'       => 'nullable|string|max:20',
-        'designation' => 'required|string|max:255',
+        'designation' => 'nullable|string|max:255',
         'facebook'    => 'nullable|url',
         'instagram'   => 'nullable|url',
         'twitter'     => 'nullable|url',
