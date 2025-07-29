@@ -94,7 +94,7 @@
                                                     <li class="menu-item"><a href="case-details.html">Case Details</a></li>
                                                 </ul>
                                             </li> --}}
-                                            <li class="menu-item"><a href="#">Our Team</a>
+                                            <li class="menu-item"><a href="{{route('our.team')}}">Our Team</a>
                                             {{-- <li class="menu-item menu-item-has-children"><a href="#">Our Team</a> --}}
                                                 {{-- <ul class="sub-menu">
                                                     <li class="menu-item"><a href="team-1.html">Team Grid One</a></li>
@@ -154,7 +154,7 @@
                                             <li class="menu-item"><a href="{{route('blog.list')}}">Blog List</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-has-children"><a href="#">Contact</a>
+                                    <li class="menu-item menu-item-has-children"><a href="{{route('contact.us')}}">Contact</a>
                                         {{-- <ul class="sub-menu">
                                             <li class="menu-item"><a href="contact-1.html">Contact One</a></li>
                                             <li class="menu-item"><a href="contact-2.html">Contact Two</a></li>

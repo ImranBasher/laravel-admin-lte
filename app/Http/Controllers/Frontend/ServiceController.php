@@ -21,6 +21,14 @@ class ServiceController extends Controller
 
                // return $data;
 
-            return view('frontend.services.sub_service')->with($data);
+            return view('frontend.services.single_sub_service')->with($data);
+        }
+
+        public function showServiceWiseSubServices($id)
+        {
+            $data['service'] = ServiceCategory::with(['subServiceCategories.multipleImages', 'multipleImages'])
+                ->findOrFail($id);
+
+            return view('frontend.services.subservices_list')->with($data);
         }
 }

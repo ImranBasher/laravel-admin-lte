@@ -51,7 +51,10 @@
     width: 100px;
 }
 
-
+.badge.bg-warning {
+    font-size: 0.75rem;
+    padding: 0.25em 0.4em;
+}
 
 .wptb-features-author .wptb-item--name {
     color: var(--color-one);

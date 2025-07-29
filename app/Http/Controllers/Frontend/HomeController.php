@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Mail;
 use App\Models\Worker;
 use App\Models\AboutUs;
 use App\Models\WhyChoose;
@@ -13,6 +14,7 @@ use App\Models\ServiceSection;
 use App\Models\ServiceCategory;
 use App\Models\ScrollingHeading;
 use App\Models\SubServiceCategory;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -52,14 +54,33 @@ class HomeController extends Controller
 
 
     public function contactUs(){
+         return view('frontend.contact_us');
+    }
 
-        // return view('frontend.contact_us')->with($data);
+
+    public function mailStore(Request $request)
+    {
+        $data = $request->validate([
+            'name'    => 'nullable|string|max:255',
+            'email'   => 'required|email',
+            'phone'   => 'nullable|string|max:20',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        try {
+            Mail::create($data);
+            return redirect()->route('contact.us')->with('success', 'Mail send successfully.');
+        } catch (\Throwable $exception) {
+            Log::error('Error storing mail', ['exception' => $exception]);
+            return back()->withErrors(['error' => 'Failed to save mail.']);
+        }
     }
 
     
     public function ourTeam(){
-
-        // return view('frontend.our_team')->with($data);
+        $data['workers']           = Worker::where('status', 1)->with('multipleImages')->paginate(6);
+        return view('frontend.our_team')->with($data);
     }
 
     

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Mail;
 use Illuminate\Http\Request;
 use App\Http\Requests\MailRequest;
 use App\Services\Mail\MailService;
@@ -87,4 +88,26 @@ protected $mailService;
             return back()->withErrors(['error' => 'Failed to delete mail.']);
         }
     }
+
+    public function getAMail($id)
+    {
+        $mail = Mail::findOrFail($id);
+        
+        if (!$mail->read_data) {
+            $mail->update(['read_data' => 1]);
+        }
+
+        return $mail;
+    }
+
+
+        public function markAsRead($id)
+        {
+            $mail = Mail::findOrFail($id);
+            $mail->read_data = 1;
+            $mail->save();
+
+            return response()->json(['success' => true]);
+        }
+
 }

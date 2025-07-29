@@ -17,6 +17,7 @@ class Mail extends Model
         'phone',
         'subject',
         'message',
+        'read_data',
     ];
 
     protected $dates = ['created_at', 'updated_at'];

@@ -101,6 +101,7 @@
                                 </div>
                             </div>
     
+                            
                             <div class="col-xl-8 offset-xl-1">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6 mb-5 mb-md-0">
@@ -109,11 +110,9 @@
                                             <h5 class="widget-title">Our Services</h5>
                                             <div class="footer-nav">
                                                 <ul>
-                                                    <li class="menu-item"><a href="#">CAR DETAILING</a></li>
-                                                    <li class="menu-item"><a href="#">GLASS REPLACEMENT</a></li>
-                                                    <li class="menu-item"><a href="#">CERAMIC COATING</a></li>
-                                                    <li class="menu-item"><a href="#">CAR REPAIRING</a></li>
-                                                    <li class="menu-item"><a href="#">ALLIGNMENT FIXING</a></li>
+                                                    @forelse($serviceCategories as $category)
+                                                        <li class="menu-item"><a href="{{route('service.subservice', $category->id)}}">{{ $category->service_name }}</a></li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>

@@ -9,7 +9,7 @@ class MailService
 {
 public function getAllMail($paginatePluckOrGet = null, array $relationships = [])
     {
-        $query = Mail::query();
+        $query = Mail::query()->orderBy('id', 'desc');
 
         !empty($relationships) ? $query->with($relationships) : $query->with([]);
 
