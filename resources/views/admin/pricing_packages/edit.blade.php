@@ -1,0 +1,24 @@
+@extends("admin.layouts.admin")
+
+@section("title", "Edit Pricing Package")
+
+@section("content")
+<div class="row">
+    <div class="col-12">
+        <div class="card card-info">
+            <div class="card-header"><h3 class="card-title">Edit Package</h3></div>
+
+            <form method="POST" action="{{ route('admin.pricing_packages.update', $package->id) }}">
+                @csrf
+                @method('PUT')
+                <div class="card-body">
+                    @include('admin.pricing_packages.form', ['package' => $package])
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-info">Update Package</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection

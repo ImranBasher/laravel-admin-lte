@@ -4,17 +4,18 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\WorkerController;
-use App\Http\Controllers\Admin\AdminProfileController;
-// use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\Admin\AboutUsController;
+// use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\WhyChooseController;
 use App\Http\Controllers\Admin\MainBannerController;
 use App\Http\Controllers\Admin\MotivationController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\FooterBannerController;
 use App\Http\Controllers\Admin\CustomerReviewController;
 use App\Http\Controllers\Admin\GeneralSettingController;
+use App\Http\Controllers\Admin\PricingPackageController;
 use App\Http\Controllers\Admin\ServiceSectionController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\ScrollingHeadingController;
@@ -55,6 +56,7 @@ Route::prefix("admin")->name("admin.")->middleware('admin.auth')->group(function
     Route::resource('about_us',               AboutUsController::class)->names('about_us');
     Route::resource('footer_banners',         FooterBannerController::class)->names('footer_banners');
     Route::resource('customer_reviews',       CustomerReviewController::class)->names('customer_reviews');
+    Route::resource('pricing_packages',       PricingPackageController::class)->names('pricing_packages');
 
 Route::delete('/admin/blogs/images/{id}',     [BlogController::class, 'deleteImage'])->name('blogs.images.destroy');
 Route::post('send-mails/{id}/mark-read', [MailController::class, 'markAsRead'])->name('send_mails.markRead');

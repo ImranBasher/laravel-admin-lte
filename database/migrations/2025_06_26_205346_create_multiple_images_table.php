@@ -40,7 +40,8 @@ return new class extends Migration
                   ->constrained('products')->onDelete('cascade');
             $table->foreignId('customer_review_id')->nullable()
                   ->constrained('customer_reviews')->onDelete('cascade');
-            $table->timestamps();
+            $table->tinyInteger('status')->default(1);
+                  $table->timestamps();
         });
     }
 

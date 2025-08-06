@@ -144,6 +144,13 @@
                                 <p>Why Chooses </p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pricing_packages.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Price Packages</p>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a href="pages/layout/fixed-footer.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

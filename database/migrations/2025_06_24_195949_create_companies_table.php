@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('message');
             $table->timestamp('read_at')->nullable(); // When the message was read
-            $table->tinyInteger('status')->default(0); // 0=unread, 1=read, 2=replied, 3=archived
+            $table->tinyInteger('status')->default(1); // 0=unread, 1=read, 2=replied, 3=archived
             $table->timestamps();
             
         });

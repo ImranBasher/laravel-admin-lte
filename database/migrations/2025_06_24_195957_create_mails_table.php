@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('subject');
             $table->text('message'); 
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

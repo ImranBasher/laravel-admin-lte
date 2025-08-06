@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_price_packages', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('short_description_start');
-            $table->string('short_description_middle');
-            $table->string('short_description_end');
-            $table->tinyInteger('status')->default(1);
-            $table->timestamps();
-        });
+        // Schema::create('service_price_packages', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->string('short_description_start');
+        //     $table->string('short_description_middle');
+        //     $table->string('short_description_end');
+        //     $table->tinyInteger('status')->default(1);
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_price_packages');
+        // Schema::dropIfExists('service_price_packages');
     }
 };

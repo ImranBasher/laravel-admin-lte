@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable(); // profile image filename
             $table->string('phone')->nullable();
             $table->text('bio')->nullable(); // short description
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

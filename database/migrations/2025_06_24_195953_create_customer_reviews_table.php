@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('customer_message');
             $table->unsignedTinyInteger('rating')->default(5); // 1-5 star rating
             $table->string('company')->nullable(); 
-            $table->tinyInteger('status')->default(0); 
+            $table->tinyInteger('status')->default(1); 
             $table->timestamps();
         });
     }
