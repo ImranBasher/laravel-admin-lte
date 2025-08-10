@@ -3,15 +3,15 @@
 @section("title", "Pricing Packages")
 
 @section("content")
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <h1>Pricing Packages</h1>
-        <a href="{{ route('admin.pricing_packages.create') }}" class="btn btn-primary float-right">Add New</a>
+        <a href="{{ route('admin.pricing_packages.create') }}" class="btn btn-primary float-left">Add New</a>
     </section>
 
-    <section class="content">
+    <section class="content mt-3">
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body">
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
@@ -47,12 +47,16 @@
                         </tr>
                         @endforeach
                         @if($packages->isEmpty())
-                            <tr><td colspan="7" class="text-center">No packages found.</td></tr>
+                            <tr><td colspan="5" class="text-center">No packages found.</td></tr>
                         @endif
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
-</div>
+
+
+
+
+{{-- </div> --}}
 @endsection

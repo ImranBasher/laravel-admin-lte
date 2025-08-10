@@ -24,6 +24,10 @@ class Blog extends Model
         'description_6',
         'description_7',
         'status',
+        'meta_title',  
+        'meta_keywords',
+        'meta_description',
+
     ];
 
     protected $casts = [

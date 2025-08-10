@@ -62,7 +62,10 @@ class BlogRequest extends FormRequest
 
             'blog_description_7_images'      => 'nullable|array',
             'blog_description_7_images.*'    => 'image|mimes:jpeg,png,jpg,gif', 
-
+            
+            'meta_title'        => 'nullable|string|max:255',
+            'meta_keywords'     => 'nullable|string|max:255',
+            'meta_description'  => 'nullable|string',
         ];
     }
 }

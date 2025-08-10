@@ -18,6 +18,10 @@ class ServiceCategory extends Model
         // 'description',
         // 'quantity',
         'status',
+
+        'meta_title',  
+        'meta_keywords',
+        'meta_description',
     ];
 
     protected $casts = [

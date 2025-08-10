@@ -32,6 +32,13 @@ class ServiceCategoryRequest extends FormRequest
             // 'logo_second' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             // 'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             // 'quantity_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'meta_title'        => 'nullable|string|max:255',
+            'meta_keywords'     => 'nullable|string|max:255',
+            'meta_description'  => 'nullable|string',
+
+
         ];
     }
 }
+
+

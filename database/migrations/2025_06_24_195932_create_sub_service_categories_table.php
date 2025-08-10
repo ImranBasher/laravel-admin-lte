@@ -29,7 +29,9 @@ return new class extends Migration
             $table->text('expected_result_description')->nullable();
             $table->integer('quantity')->nullable();
             $table->text('svg_icon')->nullable();
-            
+            $table->string('meta_title')->nullable();  
+            $table->string('meta_keywords')->nullable(); 
+            $table->longText('meta_description')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 

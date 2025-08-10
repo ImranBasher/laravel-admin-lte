@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('long_title')->nullable();
             $table->text('description')->nullable();
             $table->integer('quantity')->nullable();
+            $table->string('meta_title')->nullable();  
+            $table->string('meta_keywords')->nullable(); 
+            $table->longText('meta_description')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

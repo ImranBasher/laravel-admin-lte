@@ -59,3 +59,19 @@
         </div>
     </div>
 @endforeach
+
+
+                    <div class="form-group">
+                        <label>Meta Title</label>
+                        <input type="text" name="meta_title" class="form-control" value="{{ old('meta_title', $subServiceCategory->meta_title ?? '' ) }}" >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Meta Keywords</label>
+                        <input type="text" name="meta_keywords" class="form-control" value="{{ old('meta_keywords', $subServiceCategory->meta_keywords ?? '') }}" >
+                    </div>    
+                    
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <textarea name="meta_description" class="form-control ckeditor">{{ old('meta_description',$subServiceCategory->meta_description ?? '' ) }}</textarea>
+                    </div> 

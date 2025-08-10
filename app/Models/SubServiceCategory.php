@@ -29,6 +29,9 @@ class SubServiceCategory extends Model
         'quantity',
         'svg_icon',
         'status',
+        'meta_title',  
+        'meta_keywords',
+        'meta_description',
     ];
 
     protected $casts = [

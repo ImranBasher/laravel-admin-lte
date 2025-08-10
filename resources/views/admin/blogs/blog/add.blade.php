@@ -120,6 +120,21 @@
                         <input type="file" name="blog_description_7_images[]" class="form-control-file" multiple>
                     </div> 
 
+                    <div class="form-group">
+                        <label>Meta Title</label>
+                        <input type="text" name="meta_title" class="form-control" value="{{ old('meta_title') }}" >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Meta Keywords</label>
+                        <input type="text" name="meta_keywords" class="form-control" value="{{ old('meta_keywords') }}">
+                    </div>    
+                    
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <textarea name="meta_description" class="form-control ckeditor">{{ old('meta_description') }}</textarea>
+                    </div>                    
+
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-info"  type="submit">Create Blog</button>

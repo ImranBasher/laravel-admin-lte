@@ -14,15 +14,18 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('short_title')->nullable(); // ➕ added
-            $table->string('author')->nullable();       // ➕ added
-            $table->longText('description_1')->nullable(); // ➕ added
-            $table->longText('description_2')->nullable(); // ➕ added
-            $table->longText('description_3')->nullable(); // ➕ added
-            $table->longText('description_4')->nullable(); // ➕ added
-            $table->longText('description_5')->nullable(); // ➕ added
-            $table->longText('description_6')->nullable(); // ➕ added
-            $table->longText('description_7')->nullable(); // ➕ added
+            $table->string('short_title')->nullable(); 
+            $table->string('author')->nullable();       
+            $table->longText('description_1')->nullable(); 
+            $table->longText('description_2')->nullable(); 
+            $table->longText('description_3')->nullable(); 
+            $table->longText('description_4')->nullable(); 
+            $table->longText('description_5')->nullable(); 
+            $table->longText('description_6')->nullable(); 
+            $table->longText('description_7')->nullable();
+            $table->string('meta_title')->nullable();  
+            $table->string('meta_keywords')->nullable(); 
+            $table->longText('meta_description')->nullable(); 
             // $table->foreignId('author_id')->nullable()->constrained('authors')->onDelete('cascade');
             // $table->date('published_at')->nullable();
             $table->tinyInteger('status')->default(1);
