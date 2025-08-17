@@ -2,17 +2,17 @@
         @php
             $nav_logo = null;
 
-            foreach ($general_setting->multipleImages->where('purpose', 'general_setting')->where('type', 'logo') as  $image) {
+            foreach ($general_setting?->multipleImages?->where('purpose', 'general_setting')->where('type', 'logo') ?? [] as  $image) {
                 $nav_logo = $image;
             }
 
             $companyName = trim(
-                        ($general_setting->company_name_start ?? '') . ' ' .
-                        ($general_setting->company_name_middle ?? '') . ' ' .
-                        ($general_setting->company_name_end ?? '')
+                        ($general_setting?->company_name_start ?? '') . ' ' .
+                        ($general_setting?->company_name_middle ?? '') . ' ' .
+                        ($general_setting?->company_name_end ?? '')
                     );
         @endphp
-        
+
         <footer class="footer style1">
             <div class="footer-top">
                 <div class="container">
@@ -36,13 +36,13 @@
                                                   </clipPath>
                                                 </defs>
                                             </svg>
-                                            IF ANY CAR REALATED ISSUES ARE BOTHERING 
+                                            IF ANY CAR REALATED ISSUES ARE BOTHERING
                                         </h6>
                                         <h1 class="wptb-item--title"> GIVE A CALL TO {{$companyName}}</h1>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
-                            
+
                             <!-- Right Box -->
                             <div class="col-lg-6 col-md-6">
                                 <div class="d-flex align-items-center gap-4">
@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="wptb-icon-box1 live-chat">
                                         <div class="wptb-item--inner flex-start">
                                             <div class="wptb-item--icon">
@@ -66,7 +66,7 @@
                                             </div>
                                             <div class="wptb-item--holder">
                                                 <p class="wptb-item--description">Need Help</p>
-                                                <h5 class="wptb-item--title"> <a href="tel:+{{$general_setting->phone}}">+{{$general_setting->phone}}</a></h5>
+                                                <h5 class="wptb-item--title"> <a href="tel:+{{$general_setting?->phone}}">+{{$general_setting?->phone}}</a></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -75,38 +75,38 @@
                         </div>
                     </div>
 
-                    
+
                         <div class="row">
                             <div class="col-xl-3 mb-5 mb-xl-0">
                                 <div class="logo mr-bottom-30">
-                                    <a href="{{route('home')}}" class="light_logo"><img src="{{asset('storage/'.$nav_logo->image)}}" alt="logo"></a>
+                                    <a href="{{route('home')}}" class="light_logo"><img src="{{asset('storage/'.$nav_logo?->image)}}" alt="logo"></a>
                                 </div>
-    
+
                                 <div class="wptb-icon-box1 footer-contact-style mr-bottom-30">
                                     <div class="wptb-item--inner flex-start">
                                         <div class="wptb-item--holder">
                                             <p class="wptb-item--description">Call Us Anytime</p>
-                                            <h5 class="wptb-item--title"><a href="tel:+{{$general_setting->phone}}">{{$general_setting->phone}}</a></h5>
+                                            <h5 class="wptb-item--title"><a href="tel:+{{$general_setting?->phone}}">{{$general_setting?->phone}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
-    
+
                                 <div class="wptb-icon-box1 footer-contact-style address mr-bottom-30">
                                     <div class="wptb-item--inner flex-start">
                                         <div class="wptb-item--holder">
                                             <p class="wptb-item--description">VISIT OUR LOCATION</p>
-                                            <h5 class="wptb-item--title">{{$general_setting->address}}</h5>
+                                            <h5 class="wptb-item--title">{{$general_setting?->address}}</h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-    
-                            
+
+
                             <div class="col-xl-8 offset-xl-1">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6 mb-5 mb-md-0">
                                         <div class="footer-widget footer-links">
-                                            
+
                                             <h5 class="widget-title">Our Services</h5>
                                             <div class="footer-nav">
                                                 <ul>
@@ -117,10 +117,10 @@
                                             </div>
                                         </div>
                                     </div>
-            
+
                                     <div class="col-md-4 col-sm-6 mb-5 mb-md-0">
                                         <div class="footer-widget footer-links">
-                                            
+
                                             <h5 class="widget-title">Useful Links</h5>
                                             <div class="footer-nav">
                                                 <ul>
@@ -133,10 +133,10 @@
                                             </div>
                                         </div>
                                     </div>
-            
+
                                     <div class="col-md-4 col-sm-6 mb-5 mb-md-0">
                                         <div class="footer-widget footer-links">
-                                            
+
                                             <h5 class="widget-title">Newsletter</h5>
                                             <form class="newsletter-form" method="post">
                                                 <div class="form-group mr-bottom-25">
@@ -166,17 +166,17 @@
 
                 <div class="copyright">
                     <p>
-                        &copy; Copyright {{ now()->year }} 
-                        <a href="{{route('home')}}">{{ $companyName }}</a>. 
+                        &copy; Copyright {{ now()->year }}
+                        <a href="{{route('home')}}">{{ $companyName }}</a>.
                         All rights reserved.
                     </p>
                 </div>
                         <div class="social-box">
                             <ul>
-                                    <li><a href="{{$general_setting->facebook_link}}" class="bi bi-facebook"></a></li>
-                                    <li><a href="{{$general_setting->instagram_link}}" class="bi bi-instagram"></a></li>
-                                    <li><a href="{{$general_setting->twitter_link}}" class="bi bi-twitter-x"></a></li>
-                                    <li><a href="{{$general_setting->linkedin_link}}" class="bi bi-linkedin"></a></li>
+                                    <li><a href="{{$general_setting?->facebook_link}}" class="bi bi-facebook"></a></li>
+                                    <li><a href="{{$general_setting?->instagram_link}}" class="bi bi-instagram"></a></li>
+                                    <li><a href="{{$general_setting?->twitter_link}}" class="bi bi-twitter-x"></a></li>
+                                    <li><a href="{{$general_setting?->linkedin_link}}" class="bi bi-linkedin"></a></li>
                             </ul>
                         </div>
                         <div class="footer-nav-bottom">

@@ -4,9 +4,9 @@
 
             @php
                 $fullCompanyName = trim(
-                    ($general_setting->company_name_start ?? '') . ' ' .
-                    ($general_setting->company_name_middle ?? '') . ' ' .
-                    ($general_setting->company_name_end ?? '')
+                    ($general_setting?->company_name_start ?? '') . ' ' .
+                    ($general_setting?->company_name_middle ?? '') . ' ' .
+                    ($general_setting?->company_name_end ?? '')
                 );
             @endphp
 
@@ -180,7 +180,7 @@
                 <div class="container">
                     <div class="wptb-funfacts--inner">
                         <div class="row">
-                            @foreach($services_category ?? []as $category)
+                            @foreach($services_category ?? [] as $category)
                                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                     <div class="wptb-counter1 style1 wow skewIn">
                                         <div class="wptb-item--inner">
@@ -214,7 +214,8 @@
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--image">
                                         @php
-                                            $image = $motivation->multipleImages?->first(); // get the first image
+                                            $image = $motivation?->multipleImages?->first() ?? []; // get the first image
+
                                             $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/slider/placeholder.jpg'); // fallback if no image
                                         @endphp
                                         <img src="{{$imagePath}}" alt="img" class="image-main">
@@ -242,10 +243,10 @@
                                                 </defs>
                                             </svg>
                                         </h6>
-                                        <h1 class="wptb-item--title"> {{$motivation->title}}</h1>
+                                        <h1 class="wptb-item--title"> {{$motivation?->title}}</h1>
 
                                         <p class="wptb-item--description">
-                                            {{$motivation->description}}
+                                            {{$motivation?->description}}
                                         </p>
                                         <div class="wptb-item--button">
                                             <a class="btn-two" href="{{route('contact.us')}}">
@@ -285,7 +286,7 @@
                                 </span>
                                 Why Choose Us
                             </h6>
-                            <h1 class="wptb-item--title">{{$why_choose->title_start}}<span>{{$why_choose->title_end}}</span></h1>
+                            <h1 class="wptb-item--title">{{$why_choose?->title_start}}<span>{{$why_choose?->title_end}}</span></h1>
                             <div class="wptb-item--divider"></div>
                         </div>
                     </div>
@@ -294,7 +295,7 @@
                         <div class="col-xxl-7 col-xl-5 p-0">
 
                             @php
-                                $image = $why_choose->multipleImages?->first(); // get the first image
+                                $image = $why_choose?->multipleImages?->first(); // get the first image
                                 $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/background/bg-5.jpg'); // fallback if no image
                             @endphp
 
@@ -302,7 +303,7 @@
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--holder">
                                         <div class="wptb-item--button">
-                                            <a class="btn" data-fancybox href="{{$why_choose->video_link}}">
+                                            <a class="btn" data-fancybox href="{{$why_choose?->video_link}}">
                                                 <span class="text-second"> Play </span>
                                                 <span class="line-video-animation line-video-1"></span>
                                                 <span class="line-video-animation line-video-2"></span>

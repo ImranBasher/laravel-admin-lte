@@ -1,24 +1,8 @@
-        <!-- Preloader -->
-        
-        
-{{--         
-        <div id="preloader">
-			<div class="preloader-inner">
-				<div class="spinner">
-                    <img src="assets/img/preloader-logo.svg" alt="img">
-                    <img src="assets/img/preloader-wheel.svg" alt="img" class="wheel">
-                </div>
-				<div class="loading-text">
-					<img src="assets/img/preloader-logo-text.svg" alt="img">
-				</div>
-			</div>
-		</div> --}}
-        
         <!-- Color Mode Switcher -->
 		<div id="mode_switcher">
-			<span><i class="bi bi-moon-fill"></i></span>	
-		</div> 
-        
+			<span><i class="bi bi-moon-fill"></i></span>
+		</div>
+
         <!-- Main Header -->
         <header class="header">
             <!-- Top Bar -->
@@ -28,9 +12,9 @@
                         <!-- Left Box -->
                         <div class="left-box d-flex align-items-center">
                             <ul class="info-list">
-                                <li><a href="mailto:{{$general_setting->email}}"><span class="icon bi bi-envelope-fill"></span>{{$general_setting->email}}</a></li>
-                                <li><a href="#"><span class="icon bi bi-clock"></span>{{$general_setting->working_time}}</a></li>
-                                <li><a href="#"><span class="icon bi bi-geo-alt-fill"></span>{{$general_setting->address}}</a></li>
+                                <li><a href="mailto:{{$general_setting?->email}}"><span class="icon bi bi-envelope-fill"></span>{{$general_setting?->email}}</a></li>
+                                <li><a href="#"><span class="icon bi bi-clock"></span>{{$general_setting?->working_time}}</a></li>
+                                <li><a href="#"><span class="icon bi bi-geo-alt-fill"></span>{{$general_setting?->address}}</a></li>
                             </ul>
                         </div>
                         <!-- Right Box -->
@@ -38,11 +22,11 @@
                             <!-- Social Box -->
                             <div class="social-box">
                                 <ul>
-                                    <li><a href="{{$general_setting->facebook_link}}" class="bi bi-facebook"></a></li>
-                                    <li><a href="{{$general_setting->instagram_link}}" class="bi bi-instagram"></a></li>
-                                    <li><a href="{{$general_setting->twitter_link}}" class="bi bi-twitter-x"></a></li>
-                                    <li><a href="{{$general_setting->linkedin_link}}" class="bi bi-linkedin"></a></li>
-                                    {{-- <li><a href="{{$general_setting->}}" class="bi bi-behance"></a></li> --}}
+                                    <li><a href="{{$general_setting?->facebook_link}}" class="bi bi-facebook"></a></li>
+                                    <li><a href="{{$general_setting?->instagram_link}}" class="bi bi-instagram"></a></li>
+                                    <li><a href="{{$general_setting?->twitter_link}}" class="bi bi-twitter-x"></a></li>
+                                    <li><a href="{{$general_setting?->linkedin_link}}" class="bi bi-linkedin"></a></li>
+                                    {{-- <li><a href="{{$general_setting?->}}" class="bi bi-behance"></a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -55,77 +39,39 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <!-- Left Part -->
                         <div class="header_left_part d-flex align-items-center">
-        @php
-            $nav_logo = null;
+                        @php
+                            $nav_logo = null;
+                        @endphp
 
-            foreach ($general_setting->multipleImages->where('purpose', 'general_setting')->where('type', 'logo') as  $image) {
-                $nav_logo = $image;
-            }
-        @endphp
-                        {{-- @foreach($blog->multipleImages->where('purpose', 'blog') as $image)
-                            <div class="mt-2">
-                                <img src="{{ asset('storage/' . $image->image) }}" width="100">
-                            </div>
-                        @endforeach --}}
-
+                        @foreach($general_setting?->multipleImages?->where('purpose', 'general_setting')->where('type', 'logo') ?? [] as  $image)
+                            @php
+                                $nav_logo = $image;
+                            @endphp
 
                             <div class="logo">
                                 <a href="{{route('home')}}" class="light_logo"><img src="{{asset('storage/'.$nav_logo->image)}}" alt="logo"></a>
                             </div>
                         </div>
 
+                        @endforeach
+
                         <!-- Right Part -->
                         <div class="header_right_part d-flex align-items-center">
                             <div class="mainnav d-none d-xl-block">
                                 <ul class="main-menu">
-                                    <li class="menu-item menu-item-has-children"><a href="{{route('home')}}">Home</a>
-                                        {{-- <ul class="sub-menu">
-                                            <li class="menu-item"><a href="index.html">Home One</a></li>
-                                            <li class="menu-item"><a href="index-2.html">Home Two</a></li>
-                                            <li class="menu-item"><a href="index-3.html">Home Three</a></li>
-                                        </ul> --}}
-                                    </li>
+                                    <li class="menu-item menu-item-has-children"><a href="{{route('home')}}">Home</a></li>
                                     <li class="menu-item menu-item-has-children"><a href="#">Pages</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="{{route('about.us')}}">About Us</a></li>
-                                            {{-- <li class="menu-item menu-item-has-children"><a href="#">Case Studies</a>
-                                                <ul class="sub-menu">
-                                                    <li class="menu-item"><a href="case.html">Case List</a></li>
-                                                    <li class="menu-item"><a href="case-details.html">Case Details</a></li>
-                                                </ul>
-                                            </li> --}}
-                                            <li class="menu-item"><a href="{{route('our.team')}}">Our Team</a>
-                                            {{-- <li class="menu-item menu-item-has-children"><a href="#">Our Team</a> --}}
-                                                {{-- <ul class="sub-menu">
-                                                    <li class="menu-item"><a href="team-1.html">Team Grid One</a></li>
-                                                    <li class="menu-item"><a href="team-2.html">Team Grid Two</a></li>
-                                                    <li class="menu-item"><a href="team-details.html">Team Details</a></li>
-                                                </ul> --}}
-                                            </li>
-                                            {{-- <li class="menu-item menu-item-has-children"><a href="#">Shop</a>
-                                                <ul class="sub-menu">
-                                                    <li class="menu-item"><a href="shop.html">Shop</a></li>
-                                                    <li class="menu-item"><a href="shop-product.html">Product Details</a></li>
-                                                    <li class="menu-item"><a href="shop-cart.html">Cart</a></li>
-                                                    <li class="menu-item"><a href="shop-checkout.html">Checkout</a></li>
-                                                </ul>
-                                            </li> --}}
-                                            {{-- <li class="menu-item"><a href="coming-soon.html">Coming Soon</a></li>
-                                            <li class="menu-item"><a href="404.html">404 Error</a></li> --}}
-                                            <li class="menu-item"><a href="login.html">Login</a></li>
+                                            <li class="menu-item"><a href="{{route('our.team')}}">Our Team</a></li>
+                                            <li class="menu-item"><a href="{{ url('/login') }}">Login</a></li>
                                         </ul>
                                     </li>
-                                    {{-- <li class="menu-item menu-item-has-children"><a href="#">Services</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item"><a href="services-1.html">Services One</a></li>
-                                            <li class="menu-item"><a href="services-2.html">Services Two</a></li>
-                                            <li class="menu-item"><a href="service-details.html">Service Details</a></li>
-                                        </ul>
-                                    </li>                               --}}
 
-<li class="menu-item menu-item-has-children"><a href="#">Services</a>
+
+                                    <li class="menu-item menu-item-has-children"><a href="#">Services</a>
     <ul class="sub-menu">
-        @forelse($serviceCategories as $category)
+        @forelse($serviceCategories ?? [] as $category)
             @if($category->subServiceCategories->count())
                 <li class="menu-item menu-item-has-children">
                     <a href="#">{{ $category->service_name }}</a>
@@ -148,43 +94,16 @@
             <li class="menu-item"><a href="#">No Services Available</a></li>
         @endforelse
     </ul>
-</li>                                 
+</li>
                                     <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="{{route('blog.list')}}">Blog List</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu-item menu-item-has-children"><a href="{{route('contact.us')}}">Contact</a>
-                                        {{-- <ul class="sub-menu">
-                                            <li class="menu-item"><a href="contact-1.html">Contact One</a></li>
-                                            <li class="menu-item"><a href="contact-2.html">Contact Two</a></li>
-                                        </ul> --}}
                                     </li>
                                 </ul>
                             </div>
-
-                            {{-- <div class="wptb-header--cart">
-                                <a href="#" class="wptb-cart-icon"><i class="bi bi-cart"></i></a>
-                                <div class="wptb-cart-box">
-                                    <div class="wptb-grand-total">
-                                        <ul>
-                                            <li><a href="shop-product.html">Transmission cog wheels</a> <span class="value">$22</span></li>
-                                            <li><a href="shop-product.html">Starter motor</a> <span class="value">$17</span></li>
-                                            <li><a href="shop-product.html">Car disc brake</a> <span class="value">$250</span></li>
-                                            <li class="totalvalue">Total <span class="value">$289</span></li>
-                                        </ul>
-                                        <div class="wptb-item--button">
-                                            <a href="shop-cart.html" class="btn-three">
-                                                <div class="btn-wrap">
-                                                    <span class="text-first">Proceed To Checkout</span>
-                                                    <span class="text-second">Proceed To Checkout</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-
                             <div class="wptb-icon-box1 live-chat d-none d-md-block">
                                 <div class="wptb-item--inner flex-start">
                                     <div class="wptb-item--icon">
@@ -197,7 +116,7 @@
                                     </div>
                                     <div class="wptb-item--holder">
                                         <p class="wptb-item--description">Need Help</p>
-                                        <h5 class="wptb-item--title"> <a href="tel:{{$general_setting->phone}}">{{$general_setting->phone}}</a></h5>
+                                        <h5 class="wptb-item--title"> <a href="tel:{{$general_setting?->phone}}">{{$general_setting?->phone}}</a></h5>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +137,7 @@
                 </div>
 			</div>
 		</header>
-        <!-- End Main Header -->			
+        <!-- End Main Header -->
 
         <!-- Mobile Responsive Menu -->
 		<div class="mr_menu">
@@ -242,7 +161,7 @@
                             <div class="wptb-item--subtitle">
                                 Call Us Anytime
                             </div>
-                            <h5 class="wptb-item--title"><a href="tel:{{$general_setting->phone}}">{{$general_setting->phone}}</a></h5>
+                            <h5 class="wptb-item--title"><a href="tel:{{$general_setting?->phone}}">{{$general_setting?->phone}}</a></h5>
                         </div>
                     </div>
 
@@ -251,7 +170,7 @@
                             <div class="wptb-item--subtitle">
                                 SEND US MAIL
                             </div>
-                            <h5 class="wptb-item--title"><a href="mailto:{{$general_setting->email}}">{{$general_setting->email}}</a></h5>
+                            <h5 class="wptb-item--title"><a href="mailto:{{$general_setting?->email}}">{{$general_setting?->email}}</a></h5>
                         </div>
                     </div>
 
@@ -260,16 +179,16 @@
                             <div class="wptb-item--subtitle">
                                 VISIT OUR WORKSHOP
                             </div>2
-                            <h5 class="wptb-item--title"><a href="#">{{$general_setting->address}}</a></h5>
+                            <h5 class="wptb-item--title"><a href="#">{{$general_setting?->address}}</a></h5>
                         </div>
                     </div>
                 </div>
                 <div class="social_sites">
                     <ul class="d-flex align-items-center">
-                        <li><a href="{{$general_setting->facebook_link}}" class="bi bi-facebook"></a></li>
-                        <li><a href="{{$general_setting->instagram_link}}" class="bi bi-instagram"></a></li>
-                        <li><a href="{{$general_setting->twitter_link}}" class="bi bi-twitter-x"></a></li>
-                        <li><a href="{{$general_setting->linkedin_link}}" class="bi bi-linkedin"></a></li>
+                        <li><a href="{{$general_setting?->facebook_link}}" class="bi bi-facebook"></a></li>
+                        <li><a href="{{$general_setting?->instagram_link}}" class="bi bi-instagram"></a></li>
+                        <li><a href="{{$general_setting?->twitter_link}}" class="bi bi-twitter-x"></a></li>
+                        <li><a href="{{$general_setting?->linkedin_link}}" class="bi bi-linkedin"></a></li>
                     </ul>
 
                 </div>
