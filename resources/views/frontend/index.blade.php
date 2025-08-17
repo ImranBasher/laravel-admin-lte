@@ -180,7 +180,7 @@
                 <div class="container">
                     <div class="wptb-funfacts--inner">
                         <div class="row">
-                            @foreach($services_category ?? []as $category)
+                            @foreach($services_category ?? [] as $category)
                                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                     <div class="wptb-counter1 style1 wow skewIn">
                                         <div class="wptb-item--inner">
