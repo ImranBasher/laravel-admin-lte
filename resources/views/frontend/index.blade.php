@@ -1,43 +1,43 @@
 @extends('frontend.layouts.master')
 
-@section('content')       
+@section('content')
 
-                            @php
-                                $fullCompanyName = trim(
-                                    ($general_setting->company_name_start ?? '') . ' ' .
-                                    ($general_setting->company_name_middle ?? '') . ' ' .
-                                    ($general_setting->company_name_end ?? '')
-                                );
-                            @endphp
+            @php
+                $fullCompanyName = trim(
+                    ($general_setting->company_name_start ?? '') . ' ' .
+                    ($general_setting->company_name_middle ?? '') . ' ' .
+                    ($general_setting->company_name_end ?? '')
+                );
+            @endphp
 
 
 
             <!-- Slider Section -->
             <section class="wptb-slider p-0">
 
-@if (session('success'))
-{{-- <div class="toast-container position-fixed top-10 end-0 p-5"> --}}
-    <div class="toast-container position-fixed" style="top: 110px; right: 8px; ">
-    <div class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{ session('success') }}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-    </div>
-</div>
-@endif
+                @if (session('success'))
+                    {{-- <div class="toast-container position-fixed top-10 end-0 p-5"> --}}
+                        <div class="toast-container position-fixed" style="top: 110px; right: 8px; ">
+                        <div class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    {{ session('success') }}
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
 
 
-				<div class="swiper-container swiper-main-slider">    
+				<div class="swiper-container swiper-main-slider">
                     <!-- swiper slides -->
                     <div class="swiper-wrapper">
 
                     @foreach ($main_banners as $banner)
                         @php
-                            $image = $banner->multipleImages->first(); // get the first image
+                            $image = $banner->multipleImages?->first(); // get the first image
                             $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/slider/placeholder.jpg'); // fallback if no image
                         @endphp
 
@@ -52,12 +52,12 @@
                                                     <div class="wptb-item--inner">
                                                         <h6 class="wptb-item--subtitle"> {{ $banner->short_title }} </h6>
                                                         <h1 class="wptb-item--title"> {{ $banner->long_title }} </h1>
-                                                        <div class="wptb-item--button"> 
+                                                        <div class="wptb-item--button">
                                                             <a class="btn-two" href="#">
                                                                 <div class="btn-wrap">
-                                                                    <span class="text-first"> Contact Us </span> 
-                                                                    <span class="text-second"> <i class="bi bi-plus"></i> </span> 
-                                                                </div> 
+                                                                    <span class="text-first"> Contact Us </span>
+                                                                    <span class="text-second"> <i class="bi bi-plus"></i> </span>
+                                                                </div>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -100,8 +100,8 @@
                                     <h6 class="wptb-item--subtitle">
                                         Our Service List
                                     </h6>
-                                    <h1 class="wptb-item--title"> {{$service_section->title}} <br>
-                                        {{$service_section->title_first}} <span>{{$service_section->title_middle}}</span> {{$service_section->title_end}}</h1>
+                                    <h1 class="wptb-item--title"> {{$service_section?->title}} <br>
+                                        {{$service_section?->title_first}} <span>{{$service_section?->title_middle}}</span> {{$service_section?->title_end}}</h1>
                                     <div class="wptb-item--divider"></div>
                                 </div>
                                 <div class="col-lg-5 col-md-5">
@@ -120,9 +120,9 @@
 
                     <div class="row">
 
-                        @foreach($services_category as $category)
+                        @foreach($services_category ?? [] as $category)
                             @php
-                                $image = $category->multipleImages->first(); // First related image
+                                $image = $category->multipleImages?->first(); // First related image
                                 $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/services/placeholder.jpg'); // Fallback image
                             @endphp
 
@@ -146,7 +146,7 @@
                                                 @if(!empty($category->svg_icon))
                                                     {!! $category->svg_icon !!}
                                                 @endif
-                                                
+
                                             </div>
 
                                             <div class="wptb-item--image">
@@ -168,9 +168,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-
-
                     </div>
                 </div>
             </section>
@@ -183,31 +180,24 @@
                 <div class="container">
                     <div class="wptb-funfacts--inner">
                         <div class="row">
+                            @foreach($services_category ?? []as $category)
+                                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                    <div class="wptb-counter1 style1 wow skewIn">
+                                        <div class="wptb-item--inner">
+                                            <div class="wptb-item--icon">
 
-
-                      @foreach($services_category as $category)   
-                      
-                      
-
-                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                                <div class="wptb-counter1 style1 wow skewIn">
-                                    <div class="wptb-item--inner">
-                                        <div class="wptb-item--icon">
-
-                                                @if(!empty($category->svg_icon))
-                                                    {!! $category->svg_icon !!}
-                                                @endif
-                                        </div>
-                                        <div class="wptb-item--holder">
-                                            <div class="wptb-item--text">{{ $category->sub_service_name }}</div>
-                                            <div class="wptb-item--value"><span class="odometer" data-count="{{ $category->quantity }}"></span><span class="suffix">+</span></div>
+                                                    @if(!empty($category->svg_icon))
+                                                        {!! $category->svg_icon !!}
+                                                    @endif
+                                            </div>
+                                            <div class="wptb-item--holder">
+                                                <div class="wptb-item--text">{{ $category->sub_service_name }}</div>
+                                                <div class="wptb-item--value"><span class="odometer" data-count="{{ $category->quantity }}"></span><span class="suffix">+</span></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
-
-                            
                         </div>
                     </div>
                 </div>
@@ -223,10 +213,10 @@
                             <div class="wptb-image-single wow skewIn">
                                 <div class="wptb-item--inner">
                                     <div class="wptb-item--image">
-                                    @php
-                                        $image = $motivation->multipleImages->first(); // get the first image
-                                        $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/slider/placeholder.jpg'); // fallback if no image
-                                    @endphp
+                                        @php
+                                            $image = $motivation->multipleImages?->first(); // get the first image
+                                            $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/slider/placeholder.jpg'); // fallback if no image
+                                        @endphp
                                         <img src="{{$imagePath}}" alt="img" class="image-main">
                                     </div>
 
@@ -304,7 +294,7 @@
                         <div class="col-xxl-7 col-xl-5 p-0">
 
                             @php
-                                $image = $why_choose->multipleImages->first(); // get the first image
+                                $image = $why_choose->multipleImages?->first(); // get the first image
                                 $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/background/bg-5.jpg'); // fallback if no image
                             @endphp
 
@@ -314,11 +304,11 @@
                                         <div class="wptb-item--button">
                                             <a class="btn" data-fancybox href="{{$why_choose->video_link}}">
                                                 <span class="text-second"> Play </span>
-                                                <span class="line-video-animation line-video-1"></span> 
-                                                <span class="line-video-animation line-video-2"></span> 
+                                                <span class="line-video-animation line-video-1"></span>
+                                                <span class="line-video-animation line-video-2"></span>
                                                 <span class="line-video-animation line-video-3"></span>
                                             </a>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -339,12 +329,12 @@
                                                         @if(!empty($category->svg_icon))
                                                     {!! $category->svg_icon !!}
                                                 @endif
-                                                            
+
                                                         </div>
                                                         <h3 class="wptb-item--title">
                                                             {{ $category->sub_service_name }}
                                                         </h3>
-                                                        <p class="wptb-item--description mb-0"> 
+                                                        <p class="wptb-item--description mb-0">
                                                             {{ Str::limit(strip_tags($category->banner_description), 100) }}
                                                         </p>
                                                     </div>
@@ -360,7 +350,7 @@
                 </div>
             </section>
 
-            
+
             <!-- Pricetable -->
             <div class="wptb-pricetable-one" style="background-image: url('assets/img/more/object1.png'); background-position: 25% 100%; background-repeat: no-repeat;">
                 <div class="container">
@@ -396,484 +386,188 @@
 
                         <div class="col-lg-8">
                             <div id="monthly" class="wptb-price-wrpper">
-                                @foreach($packages as $package)
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="wptb-packages1 {{ $package->is_popular ? 'active highlight' : '' }}">
-                                        @if($package->is_popular)
-                                            <h6 class="wptb-item--tag">{{ $package->tag_text ?? 'Most Popular' }}</h6>
-                                        @endif
-                                            <div class="wptb-item--inner">
-                                                <div class="wptb-item--holder">
-                                                    <h6 class="wptb-item--subtitle">{{ $package->subtitle }}</h6>
-                                                    <h4 class="wptb-item--title">${{ number_format($package->monthly_price, 2) }}<sub>/car</sub></h4>
-                                                    <div class="wptb-list1">
-                                                        @foreach($package->features as $feature)
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">{{ $feature }}</div>
+                                @foreach($packages ?? [] as $package)
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="wptb-packages1 {{ $package->is_popular ? 'active highlight' : '' }}">
+                                            @if($package->is_popular)
+                                                <h6 class="wptb-item--tag">{{ $package->tag_text ?? 'Most Popular' }}</h6>
+                                            @endif
+                                                <div class="wptb-item--inner">
+                                                    <div class="wptb-item--holder">
+                                                        <h6 class="wptb-item--subtitle">{{ $package->subtitle }}</h6>
+                                                        <h4 class="wptb-item--title">${{ number_format($package->monthly_price, 2) }}<sub>/car</sub></h4>
+                                                        <div class="wptb-list1">
+                                                            @foreach($package->features ?? [] as $feature)
+                                                                <div class="wptb--item">
+                                                                    <div class="wptb-item--icon">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
+                                                                            <g clip-path="url(#clip0_1_31097)">
+                                                                                <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
+                                                                                <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
+                                                                            </g>
+                                                                            <defs>
+                                                                                <clipPath>
+                                                                                <rect width="30" height="7" fill="white"/>
+                                                                                </clipPath>
+                                                                            </defs>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="wptb-item--text">{{ $feature }}</div>
+                                                                </div>
+                                                            @endforeach
                                                         </div>
-                                                        @endforeach
-                                                        {{-- <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Color Changing Indoor Light</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Heavy Duty Bumper</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Tinting & Polish</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Water Proofing</div>
-                                                        </div> --}}
 
-                                                    </div>
-    
-                                                    <div class="wptb-item--button"> 
-                                                       
-                                                        <a class="btn-three" href="{{route('contact.us')}}"> 
-                                                            <div class="btn-wrap">
+                                                        <div class="wptb-item--button">
 
-                                                                <span class="text-first"> Contact Us </span> 
-                                                                <span class="text-second"> Contact Us </span> 
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                    {{-- <div class="col-lg-6">
-                                        <div class="wptb-packages1">
-                                            <div class="wptb-item--inner">
-                                                <div class="wptb-item--holder">
-                                                    <h6 class="wptb-item--subtitle">PREMIUM FIT</h6>
-                                                    <h4 class="wptb-item--title">$335.99/<sub>car</sub></h4>
-                                                    <div class="wptb-list1">
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Water Proofing of Glass</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Seat Cover Installation</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Color Changing Indoor Light</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Heavy Duty Bumper</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Tinting & Polish</div>
-                                                        </div>                                            
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Wheel Alignment Checking</div>
-                                                        </div>
-                                                    </div>
-    
-                                                    <div class="wptb-item--button"> 
-                                                        <a class="btn-three" href="#"> 
-                                                            <div class="btn-wrap">
-                                                                <span class="text-first"> Get Membership </span> 
-                                                                <span class="text-second"> Get Membership </span> 
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                </div>
-                            </div>
+                                                            <a class="btn-three" href="{{route('contact.us')}}">
+                                                                <div class="btn-wrap">
 
-                            <div id="yearly" class="wptb-price-wrpper d-none">
-                                <div class="row"> 
-                                    @foreach($packages as $package)   
-                                    <div class="col-lg-6">
-                                        <div class="wptb-packages1 {{ $package->is_popular ? 'active highlight' : '' }}">
-                                        @if($package->is_popular)
-                                            <h6 class="wptb-item--tag">{{ $package->tag_text ?? 'Most Popular' }}</h6>
-                                        @endif
-                                            <div class="wptb-item--inner">
-                                                <div class="wptb-item--holder">
-                                                    <h6 class="wptb-item--subtitle">{{ $package->subtitle }}</h6>
-                                                    <h4 class="wptb-item--title">${{ number_format($package->yearly_price, 2) }}<sub>/car</sub></h4>
-                                                    <div class="wptb-list1">
-                                                       @foreach($package->features as $feature)
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">{{ $feature }}</div>
+                                                                    <span class="text-first"> Contact Us </span>
+                                                                    <span class="text-second"> Contact Us </span>
+                                                                </div>
+                                                            </a>
                                                         </div>
-                                                      @endforeach
-                                                        {{-- <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Seat Cover Installation</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Color Changing Indoor Light</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Heavy Duty Bumper</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Tinting & Polish</div>
-                                                        </div>                                            
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Wheel Alignment Checking</div>
-                                                        </div> --}}
-
-                                                    </div>
-    
-                                                    <div class="wptb-item--button"> 
-                                                        <a class="btn-three" href="{{route('contact.us')}}"> 
-                                                            <div class="btn-wrap">
-
-                                                                <span class="text-first"> Contact Us </span> 
-                                                                <span class="text-second"> Contact Us </span> 
-                                                            </div>
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
-                                    {{-- <div class="col-lg-6">
-                                        <div class="wptb-packages1 active highlight">
-                                            <h6 class="wptb-item--tag">Most Popular</h6>
-                                            <div class="wptb-item--inner">
-                                                <div class="wptb-item--holder">
-                                                    <h6 class="wptb-item--subtitle">Detailing BASIC</h6>
-                                                    <h4 class="wptb-item--title">$250/<sub>car</sub></h4>
-                                                    <div class="wptb-list1">
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
+                            </div>
+
+                            <div id="yearly" class="wptb-price-wrpper d-none">
+                                <div class="row">
+                                    @foreach($packages as $package)
+                                        <div class="col-lg-6">
+                                            <div class="wptb-packages1 {{ $package->is_popular ? 'active highlight' : '' }}">
+                                            @if($package->is_popular)
+                                                <h6 class="wptb-item--tag">{{ $package->tag_text ?? 'Most Popular' }}</h6>
+                                            @endif
+                                                <div class="wptb-item--inner">
+                                                    <div class="wptb-item--holder">
+                                                        <h6 class="wptb-item--subtitle">{{ $package->subtitle }}</h6>
+                                                        <h4 class="wptb-item--title">${{ number_format($package->yearly_price, 2) }}<sub>/car</sub></h4>
+                                                        <div class="wptb-list1">
+                                                           @foreach($package->features as $feature)
+                                                            <div class="wptb--item">
+                                                                <div class="wptb-item--icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
+                                                                        <g clip-path="url(#clip0_1_31097)">
+                                                                            <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
+                                                                            <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath>
+                                                                            <rect width="30" height="7" fill="white"/>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="wptb-item--text">{{ $feature }}</div>
                                                             </div>
-                                                            <div class="wptb-item--text">Ceramic Coating</div>
+                                                          @endforeach
+                                                            {{-- <div class="wptb--item">
+                                                                <div class="wptb-item--icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
+                                                                        <g clip-path="url(#clip0_1_31097)">
+                                                                            <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
+                                                                            <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath>
+                                                                            <rect width="30" height="7" fill="white"/>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="wptb-item--text">Seat Cover Installation</div>
+                                                            </div>
+
+                                                            <div class="wptb--item">
+                                                                <div class="wptb-item--icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
+                                                                        <g clip-path="url(#clip0_1_31097)">
+                                                                            <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
+                                                                            <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath>
+                                                                            <rect width="30" height="7" fill="white"/>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="wptb-item--text">Color Changing Indoor Light</div>
+                                                            </div>
+
+                                                            <div class="wptb--item">
+                                                                <div class="wptb-item--icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
+                                                                        <g clip-path="url(#clip0_1_31097)">
+                                                                            <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
+                                                                            <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath>
+                                                                            <rect width="30" height="7" fill="white"/>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="wptb-item--text">Heavy Duty Bumper</div>
+                                                            </div>
+
+                                                            <div class="wptb--item">
+                                                                <div class="wptb-item--icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
+                                                                        <g clip-path="url(#clip0_1_31097)">
+                                                                            <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
+                                                                            <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath>
+                                                                            <rect width="30" height="7" fill="white"/>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="wptb-item--text">Tinting & Polish</div>
+                                                            </div>
+
+                                                            <div class="wptb--item">
+                                                                <div class="wptb-item--icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
+                                                                        <g clip-path="url(#clip0_1_31097)">
+                                                                            <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
+                                                                            <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath>
+                                                                            <rect width="30" height="7" fill="white"/>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="wptb-item--text">Wheel Alignment Checking</div>
+                                                            </div> --}}
+
                                                         </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Color Changing Indoor Light</div>
+
+                                                        <div class="wptb-item--button">
+                                                            <a class="btn-three" href="{{route('contact.us')}}">
+                                                                <div class="btn-wrap">
+
+                                                                    <span class="text-first"> Contact Us </span>
+                                                                    <span class="text-second"> Contact Us </span>
+                                                                </div>
+                                                            </a>
                                                         </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Heavy Duty Bumper</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Tinting & Polish</div>
-                                                        </div>
-    
-                                                        <div class="wptb--item">
-                                                            <div class="wptb-item--icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="7" viewBox="0 0 30 7" fill="none">
-                                                                    <g clip-path="url(#clip0_1_31097)">
-                                                                        <path d="M12.0643 0H8.02251L0.585938 7H4.6277L12.0643 0Z" fill="#D70006"/>
-                                                                        <path d="M19.8729 0H15.8311L8.39453 7H12.4363L19.8729 0Z" fill="#D70006"/>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath>
-                                                                        <rect width="30" height="7" fill="white"/>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="wptb-item--text">Water Proofing</div>
-                                                        </div>
-                                                    </div>
-    
-                                                    <div class="wptb-item--button"> 
-                                                        <a class="btn-three" href="#"> 
-                                                            <div class="btn-wrap">
-                                                                <span class="text-first"> Get Membership </span> 
-                                                                <span class="text-second"> Get Membership </span> 
-                                                            </div>
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -882,8 +576,8 @@
             </div>
 
             <!-- Our Partners -->
-            <div class="mr-top-90">    
-                <div class="swiper-container swiper-clients">    
+            <div class="mr-top-90">
+                <div class="swiper-container swiper-clients">
                     <!-- swiper slides -->
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -903,7 +597,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="swiper-slide">
                             <div class="wptb-partner--image1">
                                 <a href="#">
@@ -912,7 +606,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="swiper-slide">
                             <div class="wptb-partner--image1">
                                 <a href="#">
@@ -921,7 +615,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="swiper-slide">
                             <div class="wptb-partner--image1">
                                 <a href="#">
@@ -930,7 +624,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="swiper-slide">
                             <div class="wptb-partner--image1">
                                 <a href="#">
@@ -939,7 +633,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="swiper-slide">
                             <div class="wptb-partner--image1">
                                 <a href="#">
@@ -955,46 +649,45 @@
 
             <!-- Service Carousel -->
             <section class="wptb-service-carousel pb-0">
-                <div class="swiper-container swiper-imagebox">    
+                <div class="swiper-container swiper-imagebox">
                     <!-- swiper slides -->
                     <div class="swiper-wrapper">
 
                        @foreach($services_category_for_slide as $cate)
-                        <div class="swiper-slide">
-                            <div class="wptb-image-box3 wow fadeInLeft">
-                                <div class="wptb-item--inner">
-                                    <div class="wptb-item--image">
-                        
-                            @php
-                                $image = $cate->multipleImages->first(); // First related image
-                                $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/services/placeholder.jpg'); // Fallback image
-                            @endphp 
+                           <div class="swiper-slide">
+                                <div class="wptb-image-box3 wow fadeInLeft">
+                                    <div class="wptb-item--inner">
+                                        <div class="wptb-item--image">
+                                            @php
+                                                $image = $cate->multipleImages?->first(); // First related image
+                                                $imagePath = $image ? asset('storage/' . $image->image) : asset('assets/img/services/placeholder.jpg'); // Fallback image
+                                            @endphp
 
+                                            <img src="{{ $imagePath }}" alt="img">
 
-                                         <img src="{{ $imagePath }}" alt="img"> 
-                                        <div class="wptb-item--button"> 
-                                            <a class="btn-three" href="{{ route('services.subcategory', ['sub_service_category' => $cate->id]) }}"> 
-                                                <span class="btn-wrap">
-                                                    <span class="text-first"><i class="bi bi-arrow-right"></i></span>
-                                                    <span class="text-second"><i class="bi bi-arrow-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="wptb-item--holder">
-                                        <div class="wptb-item--wrap-content">
-                                            {{-- <p class="wptb-item--description"> Repair</p> --}}
-                                            <h2 class="wptb-item--title">
-                                                <a href="{{ route('services.subcategory', ['sub_service_category' => $cate->id]) }}">
-                                                    {{ $cate->sub_service_name }}
+                                            <div class="wptb-item--button">
+                                                <a class="btn-three" href="{{ route('services.subcategory', ['sub_service_category' => $cate->id]) }}">
+                                                    <span class="btn-wrap">
+                                                        <span class="text-first"><i class="bi bi-arrow-right"></i></span>
+                                                        <span class="text-second"><i class="bi bi-arrow-right"></i></span>
+                                                    </span>
                                                 </a>
-                                            </h2>
+                                            </div>
+                                        </div>
+                                        <div class="wptb-item--holder">
+                                            <div class="wptb-item--wrap-content">
+                                                {{-- <p class="wptb-item--description"> Repair</p> --}}
+                                                <h2 class="wptb-item--title">
+                                                    <a href="{{ route('services.subcategory', ['sub_service_category' => $cate->id]) }}">
+                                                        {{ $cate->sub_service_name }}
+                                                    </a>
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        @endforeach
+                           </div>
+                       @endforeach
 
                     </div>
                 </div>
@@ -1014,7 +707,7 @@
                                         About {{ $fullCompanyName }} </h1>
                                 </div>
                             </div>
-                            
+
                             {{-- <div class="col-md-6">
                                 <div class="wptb-item--button text-md-end">
                                     <a class="btn-two" href="contact-1.html">
@@ -1028,13 +721,13 @@
                         </div>
                     </div>
 
-                    <div class="swiper-container swiper-testimonial">    
+                    <div class="swiper-container swiper-testimonial">
                         <!-- swiper slides -->
                         <div class="swiper-wrapper">
-                            
+
                                                         @foreach ($reviews as $review )
-                                                            
-                                                        
+
+
                                                         <div class="swiper-slide">
                                                             <div class="wptb-testimonial1 style3">
 
@@ -1043,7 +736,7 @@
                                                                 <div class="wptb-item--inner">
                                                                     <div class="wptb-item--image">
                                                                         @php
-                                                                            $image = $review->multipleImages->where('type', 'customer_image')->first();
+                                                                            $image = $review->multipleImages?->where('type', 'customer_image')->first();
                                                                         @endphp
 
                                                                         @if ($image)
@@ -1061,7 +754,7 @@
                                                                             </svg>
                                                                         </div>
                                                                     </div>
-                                        
+
                                                                     <div class="wptb-item--holder">
                                                                         <div class="wptb-item--meta-rating">
                                                                             <i class="bi bi-star-fill"></i>
@@ -1070,7 +763,7 @@
                                                                             <i class="bi bi-star-fill"></i>
                                                                             <i class="bi bi-star-fill"></i>
                                                                         </div>
-                            
+
                                                                         <p class="wptb-item--description"> “{{$review->customer_message}}”</p>
                                                                         <div class="wptb-item--meta">
                                                                             <div class="wptb-item--meta-left">
@@ -1098,7 +791,7 @@
                                                 </svg>
                                             </div>
                                         </div>
-            
+
                                         <div class="wptb-item--holder">
                                             <div class="wptb-item--meta-rating">
                                                 <i class="bi bi-star-fill"></i>
@@ -1131,7 +824,7 @@
                                                 </svg>
                                             </div>
                                         </div>
-            
+
                                         <div class="wptb-item--holder">
                                             <div class="wptb-item--meta-rating">
                                                 <i class="bi bi-star-fill"></i>
@@ -1171,8 +864,8 @@
                             <div class="wptb-item--divider"></div>
                         </div>
                     </div>
-                    
-                    <div class="swiper-container swiper-blog">    
+
+                    <div class="swiper-container swiper-blog">
                         <!-- swiper slides -->
                         <div class="swiper-wrapper">
 
@@ -1187,7 +880,7 @@
                                                     <img src="assets/img/blog/1.jpg" alt="img"></a> --}}
                                             <a href="{{ route('frontend.blog.details', $blog->id) }}" class="wptb-item-link">
                                                                 @php
-                                                                    $firstImage = $blog->multipleImages->where('purpose', 'blog_images')->first();
+                                                                    $firstImage = $blog->multipleImages?->where('purpose', 'blog_images')->first();
                                                                 @endphp
                                                                 @if ($firstImage)
                                                                     <img src="{{ asset('storage/' . $firstImage->image) }}" alt="{{ $blog->title }}">
@@ -1199,9 +892,9 @@
                                                 <div class="wptb-item--date">{{ $blog->created_at->format('F d, Y') }}</div>
                                             </div>
                                             <div class="wptb-item--holder">
-                                                
+
                                                 <h3 class="wptb-item--title"><a href="{{ route('frontend.blog.details', $blog->id) }}">{{ $blog->short_title }}</a></h3>
-                                                
+
                                                 <div class="wptb-item--meta">
                                                     <div class="wptb-item--author">By <a href="#">{{ $blog->author ?? 'Unknown' }}</a></div>
                                                     {{-- <div class="wptb-item--meta-right">
@@ -1224,9 +917,9 @@
                                             <div class="wptb-item--date">October 19, 2023</div>
                                         </div>
                                         <div class="wptb-item--holder">
-                                            
+
                                             <h3 class="wptb-item--title"><a href="blog-details.html">Useful Tips For Maintaing balance & Allignment in your vehicles</a></h3>
-                                            
+
                                             <div class="wptb-item--meta">
                                                 <div class="wptb-item--author">By <a href="#">Marina Willums</a></div>
                                                 <div class="wptb-item--meta-right">
@@ -1238,7 +931,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="swiper-slide">
                                 <div class="wptb-blog-grid1 wow fadeInLeft">
                                     <div class="wptb-item--inner">
@@ -1247,9 +940,9 @@
                                             <div class="wptb-item--date">October 19, 2023</div>
                                         </div>
                                         <div class="wptb-item--holder">
-                                            
+
                                             <h3 class="wptb-item--title"><a href="blog-details.html">Useful Tips For Maintaing balance & Allignment in your vehicles</a></h3>
-                                            
+
                                             <div class="wptb-item--meta">
                                                 <div class="wptb-item--author">By <a href="#">Marina Willums</a></div>
                                                 <div class="wptb-item--meta-right">
@@ -1261,7 +954,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="swiper-slide">
                                 <div class="wptb-blog-grid1 wow fadeInLeft">
                                     <div class="wptb-item--inner">
@@ -1270,9 +963,9 @@
                                             <div class="wptb-item--date">October 19, 2023</div>
                                         </div>
                                         <div class="wptb-item--holder">
-                                            
+
                                             <h3 class="wptb-item--title"><a href="blog-details.html">Useful Tips For Maintaing balance & Allignment in your vehicles</a></h3>
-                                            
+
                                             <div class="wptb-item--meta">
                                                 <div class="wptb-item--author">By <a href="#">Marina Willums</a></div>
                                                 <div class="wptb-item--meta-right">
@@ -1284,8 +977,8 @@
                                     </div>
                                 </div>
                             </div> --}}
-                        
-                        
+
+
                         </div>
                         <!-- !swiper slides -->
 
@@ -1328,39 +1021,39 @@
 
                                     <form class="wptb-form" action="{{route('send.customer.mail')}}" method="post">
                                         @csrf
-                                        <div class="wptb-form--inner">        
+                                        <div class="wptb-form--inner">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 mb-4">
                                                     <div class="form-group">
                                                         <input type="text" name="name" class="form-control" placeholder="Name*" required>
                                                     </div>
                                                 </div>
-        
+
                                                 <div class="col-lg-6 col-md-6 mb-4">
                                                     <div class="form-group">
                                                         <input type="email" name="email" class="form-control" placeholder="E-mail*" required>
                                                     </div>
                                                 </div>
-        
+
                                                 <div class="col-lg-12 col-md-12 mb-4">
                                                     <div class="form-group">
                                                         <input type="text" name="subject" class="form-control" placeholder="Subject">
                                                     </div>
                                                 </div>
-        
+
                                                 <div class="col-md-12 col-lg-12 mb-4">
                                                     <div class="form-group">
                                                         <textarea name="message" class="form-control" placeholder="Text"></textarea>
                                                     </div>
                                                 </div>
-        
+
                                                 <div class="col-md-12 col-lg-12">
-                                                    <div class="wptb-item--button"> 
+                                                    <div class="wptb-item--button">
                                                         <button class="btn-two white" type="submit">
                                                             <div class="btn-wrap">
-                                                                <span class="text-first"> Send Mail </span> 
-                                                                <span class="text-second"> <i class="bi bi-plus"></i> </span> 
-                                                            </div> 
+                                                                <span class="text-first"> Send Mail </span>
+                                                                <span class="text-second"> <i class="bi bi-plus"></i> </span>
+                                                            </div>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -1396,8 +1089,8 @@
                                         </div>
 
                                         <div class="col-md-12 col-lg-12">
-                                            <div class="wptb-item--button"> 
-                                                <button type="submit" class="btn-three gray"> 
+                                            <div class="wptb-item--button">
+                                                <button type="submit" class="btn-three gray">
                                                     <span class="btn-wrap">
                                                         <span class="text-first">Send Mail</span>
                                                         <span class="text-second">Send Mail</span>
@@ -1418,6 +1111,6 @@
     @if(session('success'))
         toastr.success("{{ session('success') }}");
     @endif
-</script>           
-        
+</script>
+
 @endsection
