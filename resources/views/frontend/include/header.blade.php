@@ -123,32 +123,32 @@
                                         </ul>
                                     </li>                               --}}
 
-<li class="menu-item menu-item-has-children"><a href="#">Services</a>
-    <ul class="sub-menu">
-        @forelse($serviceCategories as $category)
-            @if($category->subServiceCategories->count())
-                <li class="menu-item menu-item-has-children">
-                    <a href="#">{{ $category->service_name }}</a>
-                    <ul class="sub-menu">
-                        @foreach($category->subServiceCategories as $subService)
-                            <li class="menu-item">
-                                <a href="{{ route('services.subcategory', ['sub_service_category' => $subService->id]) }}">
-                                    {{ $subService->sub_service_name }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
-            @else
-                <li class="menu-item">
-                    <a href="#">{{ $category->service_name }}</a>
-                </li>
-            @endif
-        @empty
-            <li class="menu-item"><a href="#">No Services Available</a></li>
-        @endforelse
-    </ul>
-</li>                                 
+                                    <li class="menu-item menu-item-has-children"><a href="#">Services</a>
+                                        <ul class="sub-menu">
+                                            @forelse($serviceCategories as $category)
+                                                @if($category->subServiceCategories->count())
+                                                    <li class="menu-item menu-item-has-children">
+                                                        <a href="#">{{ $category->service_name }}</a>
+                                                        <ul class="sub-menu">
+                                                            @foreach($category->subServiceCategories as $subService)
+                                                                <li class="menu-item">
+                                                                    <a href="{{ route('services.subcategory', ['sub_service_category' => $subService->id]) }}">
+                                                                        {{ $subService->sub_service_name }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                @else
+                                                    <li class="menu-item">
+                                                        <a href="#">{{ $category->service_name }}</a>
+                                                    </li>
+                                                @endif
+                                            @empty
+                                                <li class="menu-item"><a href="#">No Services Available</a></li>
+                                            @endforelse
+                                        </ul>
+                                    </li>                                 
                                     <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item"><a href="{{route('blog.list')}}">Blog List</a></li>

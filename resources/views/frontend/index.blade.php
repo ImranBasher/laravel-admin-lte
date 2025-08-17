@@ -131,7 +131,7 @@
                                     <div class="wptb-item--inner">
                                         <div class="wptb-item--holder">
                                             <h3 class="wptb-item--title">
-<a href="{{ route('services.subcategory', ['sub_service_category' => $category->id]) }}">
+                                                <a href="{{ route('services.subcategory', ['sub_service_category' => $category->id]) }}">
                                                     {{ $category->sub_service_name }}
                                                 </a>
                                             </h3>

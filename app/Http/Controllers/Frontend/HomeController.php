@@ -41,6 +41,7 @@ class HomeController extends Controller
         $data['reviews'] =  CustomerReview::where('status', 1)->with(['multipleImages'])->get();
         $data['blogs'] =  Blog::where('status', 1)->with(['multipleImages'])->get();
         $data['packages'] = PricingPackage::where('status', 1)->get();
+        
         return view('frontend.index')->with($data);
     }
 
