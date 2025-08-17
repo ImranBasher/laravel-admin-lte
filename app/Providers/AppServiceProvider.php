@@ -35,18 +35,12 @@ class AppServiceProvider extends ServiceProvider
            $view->with('authUser', $user ?? null);
         });
 
-        $generalSetting = GeneralSetting::with(['multipleImages'])->first();
-         View::share('general_setting', $generalSetting ?? null);
-    
+        View::share('general_setting', GeneralSetting::with(['multipleImages'])->first() ?? []);
+
          // Share service categories with subcategories with all views
-    $serviceCategories = ServiceCategory::with(['subServiceCategories'])
-        ->where('status', true)
-        ->orderBy('service_name')
-        ->get();
-            
-    View::share('serviceCategories', $serviceCategories ?? collect());        
-
-
-
+        View::share('serviceCategories', ServiceCategory::with(['subServiceCategories'])
+            ->where('status', true)
+            ->orderBy('service_name')
+            ->get() ?? []);
     }
 }
