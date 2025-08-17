@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
                 $user->load(['profile', 'multipleImages']);
             }
 
-            $view->with('authUser', $user);
+           $view->with('authUser', $user ?? null);
         });
 
         View::share('general_setting', GeneralSetting::with(['multipleImages'])->first() ?? null);
