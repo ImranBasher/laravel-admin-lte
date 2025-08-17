@@ -21,9 +21,6 @@ class AdminMiddleware
             return redirect()->route('login');
         }
 
-        if(Auth::user()->role !== 'admin'){
-            abort(403, 'Unauthorize');
-        }
 
         return $next($request);
     }
