@@ -58,7 +58,7 @@ Route::prefix("admin")->name("admin.")->middleware('admin.auth')->group(function
     Route::resource('customer_reviews',       CustomerReviewController::class)->names('customer_reviews');
     Route::resource('pricing_packages',       PricingPackageController::class)->names('pricing_packages');
 
-Route::delete('/admin/blogs/images/{id}',     [BlogController::class, 'deleteImage'])->name('blogs.images.destroy');
+Route::delete('blogs/images/{id}',     [BlogController::class, 'deleteImage'])->name('blogs.images.destroy');
 Route::post('send-mails/{id}/mark-read', [MailController::class, 'markAsRead'])->name('send_mails.markRead');
 
     

@@ -134,9 +134,9 @@ public function getAllBlog($paginatePluckOrGet = null, array $relationships = []
             deleteSingleImage($image);
 
             return response()->json(['message' => 'Image deleted successfully.']);
+
         } catch (\Exception $e) {
             Log::error('Error deleting blog image', ['exception' => $e]);
-
             return response()->json(['message' => 'Failed to delete image.'], 500);
         }
     }
