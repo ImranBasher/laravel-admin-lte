@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
     
-<!-- Mirrored from wpthemebooster.com/demo/themeforest/html/ducatibox/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 18:26:40 GMT -->
 <head>
         <!-- Meta Tags -->
         <meta charset="utf-8">
@@ -10,26 +9,25 @@
         <meta name="description" content="Dubai Online Car Care">
         <meta name="author" content="">
 
+        @yield("meta")
+
         <!-- Favicon and touch Icons -->
-        <link href="{{ asset('assets/img/favicon.png') }}" rel="shortcut icon" type="image/png">
-        <link href="{{ asset('assets/img/apple-touch-icon.html') }}" rel="apple-touch-icon">
-        <link href="{{ asset('assets/img/apple-touch-icon-72x72.html') }}" rel="apple-touch-icon" sizes="72x72">
-        <link href="{{ asset('assets/img/apple-touch-icon-114x114.html') }}" rel="apple-touch-icon" sizes="114x114">
-        <link href="{{ asset('assets/img/apple-touch-icon-144x144.html') }}" rel="apple-touch-icon" sizes="144x144">
+        <link href="{{ urlVersion('assets/img/favicon.png') }}" rel="shortcut icon" type="image/png">
+        <link href="{{ urlVersion('assets/img/apple-touch-icon.html') }}" rel="apple-touch-icon">
+        <link href="{{ urlVersion('assets/img/apple-touch-icon-72x72.html') }}" rel="apple-touch-icon" sizes="72x72">
+        <link href="{{ urlVersion('assets/img/apple-touch-icon-114x114.html') }}" rel="apple-touch-icon" sizes="114x114">
+        <link href="{{ urlVersion('assets/img/apple-touch-icon-144x144.html') }}" rel="apple-touch-icon" sizes="144x144">
 
         <!-- Page Title -->
-        <title>Dubai Online Car Care</title>    
+        <title>@yield("title") Dubai Online Car Care</title>    
 
         <!-- Styles Include -->
-        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+        <link rel="stylesheet" href="{{ urlVersion('assets/css/main.css') }}">
         
     </head>
 
 
     <body>
-
-
-
         @include('frontend.include.header')
 
         <!-- Main Wrapper-->
@@ -41,36 +39,42 @@
         @stack('custom-scripts')  <!-- For JavaScript -->
 
         <!-- Core JS -->
-        <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+        <script src="{{ urlVersion('assets/js/jquery-3.6.0.min.js') }}"></script>
 
+        
+
+        {{-- 
+            https://dubaionlinecarcare.com/assets/js/jquery-3.6.0.min.js?v=1.0.1 // Disk Cache
+        --}}
         <!-- Framework -->
-        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ urlVersion('assets/js/bootstrap.min.js') }}"></script>
+
+         {{-- 
+            https://dubaionlinecarcare.com/assets/js/bootstrap.min.js Disk Cache Failed
+        --}}
 
         <!-- WOW Scroll Effect -->
-        <script src="{{ asset('plugins/wow/wow.min.js') }}"></script>
+        <script src="{{ urlVersion('plugins/wow/wow.min.js') }}"></script>
 
         <!-- Swiper Slider -->
-        <script src="{{ asset('plugins/swiper/swiper-bundle.min.js') }}"></script>
+        <script src="{{ urlVersion('plugins/swiper/swiper-bundle.min.js') }}"></script>
 
         <!-- Odometer Counter -->
-        <script src="{{ asset('plugins/odometer/appear.js') }}"></script>
-        <script src="{{ asset('plugins/odometer/odometer.js') }}"></script>
+        <script src="{{ urlVersion('plugins/odometer/appear.js') }}"></script>
+        <script src="{{ urlVersion('plugins/odometer/odometer.js') }}"></script>
 
         <!-- Fancybox -->
-        <script src="{{ asset('plugins/fancybox/jquery.fancybox.min.js') }}"></script>
+        <script src="{{ urlVersion('plugins/fancybox/jquery.fancybox.min.js') }}"></script>
 
         <!-- Flatpickr -->
-        <script src="{{ asset('plugins/flatpickr/flatpickr.min.js') }}"></script>
+        <script src="{{ urlVersion('plugins/flatpickr/flatpickr.min.js') }}"></script>
 
         <!-- Nice Select -->
-        <script src="{{ asset('plugins/nice-select/jquery.nice-select.min.js') }}"></script>
+        <script src="{{ urlVersion('plugins/nice-select/jquery.nice-select.min.js') }}"></script>
 
         <!-- Theme Custom JS -->
-        <script src="{{ asset('assets/js/theme.js') }}"></script>
-        <script src="{{ asset('assets/js/pricetable-toggler.js') }}"></script>
+        <script src="{{ urlVersion('assets/js/theme.js') }}"></script>
+        <script src="{{ urlVersion('assets/js/pricetable-toggler.js') }}"></script>
 
     </body>
-
-
-<!-- Mirrored from wpthemebooster.com/demo/themeforest/html/ducatibox/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jun 2025 18:27:03 GMT -->
 </html>

@@ -5,10 +5,11 @@ namespace App\Services\GeneralSetting;
 use App\Models\MultipleImage;
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class GeneralSettingService
 {
-    public function getAGeneralSetting(){
+    public function getAGeneralSetting($id = null){
         return GeneralSetting::with(['multipleImages'])->latest()->first();
     }
 
@@ -35,7 +36,7 @@ class GeneralSettingService
 
                         // Delete from MultipleImage table first
                         MultipleImage::where('image', $generalSetting->$field)
-                            ->where('generalSetting_id', $generalSetting->id)
+                            ->where('general_setting_id', $generalSetting->id)
                             ->delete();
                         
                         // Delete actual file
@@ -62,7 +63,7 @@ class GeneralSettingService
             // Handle multiple images if needed
             if ($request->hasFile('images')) {
                 // Delete previous multiple images
-                MultipleImage::where('generalSetting_id', $generalSetting->id)
+                MultipleImage::where('general_setting_id', $generalSetting->id)
                     ->where('purpose', 'general_setting')
                     ->where('type', 'additional')
                     ->each(function($image) {
@@ -77,7 +78,7 @@ class GeneralSettingService
                 $uploadedImages = multipleImageUploadFiles($request, 'general_setting');
                 foreach ($uploadedImages as $imageName) {
                     MultipleImage::create([
-                        'generalSetting_id' => $generalSetting->id,
+                        'general_setting_id' => $generalSetting->id,
                         'image'             => $imageName,
                         'type'              => 'additional',
                         'purpose'           => 'general_setting'
@@ -95,5 +96,36 @@ class GeneralSettingService
         }
 
     }
+
+    public function deleteGeneralSettingImage(int $id): bool
+    {
+        try {
+            $image = MultipleImage::where('id', $id)
+                ->where('purpose', 'general_setting')
+                ->whereIn('type', ['logo','contact_us_logo','blog_header_banner','additional'])
+                ->first();
+
+            if (!$image) return false;
+
+            if ($image->image && Storage::disk('public')->exists($image->image)) {
+                Storage::disk('public')->delete($image->image);
+            }
+
+            $image->delete();
+
+            return true;
+
+        } catch (\Throwable $exception) {
+            Log::error('Error deleting General Setting image in service', [
+                'exception' => $exception,
+                'image_id'  => $id,
+            ]);
+            return false;
+        }
+    }
+
+
+
+
 }
 

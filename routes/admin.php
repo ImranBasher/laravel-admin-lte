@@ -60,6 +60,6 @@ Route::prefix("admin")->name("admin.")->middleware('admin.auth')->group(function
 
 Route::delete('blogs/images/{id}',     [BlogController::class, 'deleteImage'])->name('blogs.images.destroy');
 Route::post('send-mails/{id}/mark-read', [MailController::class, 'markAsRead'])->name('send_mails.markRead');
-
+Route::delete('/general-settings/images/{image}',[GeneralSettingController::class, 'deleteImage'])->name('general-settings.images.destroy');
     
 });

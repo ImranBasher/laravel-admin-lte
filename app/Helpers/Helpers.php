@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\MultipleImage;
+use App\Utils\AppStatic;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
@@ -343,5 +344,38 @@ if (!function_exists('delete_images_by_column')) {
 
             $image->delete();
         }
+    }
+}
+
+
+if(!function_exists("urlVersion")){
+    function urlVersion($filePath = null, $storageRequire = false){
+        if(empty($filePath)){
+
+            return noImage();
+        }
+
+        // Preparing full path
+        $finalDirPath = $storageRequire ? "storage/{$filePath}" : $filePath; 
+
+        return asset($finalDirPath)."?v=".cacheVersion();
+    }
+}
+
+
+
+if(!function_exists("noImage")){
+    function noImage(){
+        
+        return asset("noImage.png")."?v=".cacheVersion();
+    }
+}
+
+
+
+if(!function_exists("cacheVersion")){
+    function cacheVersion(){
+        
+        return AppStatic::CACHE_VERSION;
     }
 }

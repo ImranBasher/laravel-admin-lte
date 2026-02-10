@@ -114,7 +114,113 @@
                         </div>
                     </div>
 
-                    <!-- Logo Uploads -->
+
+{{-- ================= MAIN LOGO ================= --}}
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Main Logo</label>
+                        <div class="col-sm-10">
+
+                            <input type="file" class="form-control-file" name="logo">
+
+                            @foreach($settings?->multipleImages->where('type','logo') as $image)
+                                <div class="mt-2" id="img-row-{{ $image->id }}">
+                                    <img src="{{ asset('storage/'.$image->image) }}"
+                                         width="120"
+                                         class="mb-2">
+
+                                    <br>
+
+                                    <a href="{{ asset('storage/'.$image->image) }}" target="_blank">
+                                        View Logo
+                                    </a>
+
+                                    <br>
+
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm js-delete-image mt-1"
+                                            data-id="{{ $image->id }}"
+                                            data-url="{{ route('admin.general-settings.images.destroy',$image->id) }}">
+                                        Delete
+                                    </button>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+
+                    {{-- ================= CONTACT US LOGO ================= --}}
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Contact Us Logo</label>
+                        <div class="col-sm-10">
+
+                            <input type="file" class="form-control-file" name="contact_us_logo">
+
+                            @foreach($settings?->multipleImages->where('type','contact_us_logo') as $image)
+                                <div class="mt-2" id="img-row-{{ $image->id }}">
+                                    <img src="{{ asset('storage/'.$image->image) }}"
+                                         width="120"
+                                         class="mb-2">
+
+                                    <br>
+
+                                    <a href="{{ asset('storage/'.$image->image) }}" target="_blank">
+                                        View Logo
+                                    </a>
+
+                                    <br>
+
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm js-delete-image mt-1"
+                                            data-id="{{ $image->id }}"
+                                            data-url="{{ route('admin.general-settings.images.destroy',$image->id) }}">
+                                        Delete
+                                    </button>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+
+                    {{-- ================= BLOG HEADER BANNER ================= --}}
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Blog Header Banner</label>
+                        <div class="col-sm-10">
+
+                            <input type="file" class="form-control-file" name="blog_header_banner">
+
+                            @foreach($settings?->multipleImages->where('type','blog_header_banner') as $image)
+                                <div class="mt-2" id="img-row-{{ $image->id }}">
+                                    <img src="{{ asset('storage/'.$image->image) }}"
+                                         width="200"
+                                         class="mb-2">
+
+                                    <br>
+
+                                    <a href="{{ asset('storage/'.$image->image) }}" target="_blank">
+                                        View Banner
+                                    </a>
+
+                                    <br>
+
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm js-delete-image mt-1"
+                                            data-id="{{ $image->id }}"
+                                            data-url="{{ route('admin.general-settings.images.destroy',$image->id) }}">
+                                        Delete
+                                    </button>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- <!-- Logo Uploads -->
+
             <!-- Logo Uploads -->
             <div class="form-group row">
                 <label for="logo" class="col-sm-2 col-form-label">Main Logo</label>
@@ -159,7 +265,7 @@
                         <img src="{{ asset('storage/' . $image->image) }}" alt="Blog Banner" width="120">
                     @endforeach
                 </div>
-            </div>
+            </div> --}}
 
 
                 {{-- @dd($settings) --}}
@@ -171,5 +277,43 @@
         </div>
     </div>
 </div>
+
+{{-- ================= DELETE SCRIPT ================= --}}
+<script>
+document.addEventListener('click', async function (e) {
+
+    const btn = e.target.closest('.js-delete-image');
+    if (!btn) return;
+
+    const url = btn.dataset.url;
+    const id  = btn.dataset.id;
+
+    if (!confirm('Are you sure you want to delete this image?')) return;
+
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            document.getElementById('img-row-' + id).remove();
+        } else {
+            alert('Delete failed.');
+        }
+
+    } catch (error) {
+        alert('Server error.');
+        console.error(error);
+    }
+});
+</script>
+
+
 
 @endsection

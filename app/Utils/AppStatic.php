@@ -3,6 +3,9 @@ namespace App\Utils;
 
 class AppStatic{
 
+    # Caching Version
+    const CACHE_VERSION = "1.0.1";
+
     
     public const ACTIVE             = "active";
     public const IN_ACTIVE          = "inactive";
