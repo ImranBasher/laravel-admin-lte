@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="min-vh-100 d-flex align-items-center bg-light py-5">
-    <div class="container">
+<main class="min-vh-100 d-flex align-items-center py-4 py-md-5" style="background: #e9ecef;">
+    <div class="container px-3 px-md-4">
         <div class="row justify-content-center">
-            <div class="col-12 col-lg-10 col-xl-9">
-                <section class="card border-0 shadow-lg overflow-hidden">
+            <div class="col-12 col-sm-11 col-md-10 col-lg-10 col-xl-9">
+                <section class="card border-0 shadow-lg overflow-hidden bg-dark text-white">
                     <div class="row g-0">
-                        <div class="col-lg-5 d-none d-lg-flex">
-                            <div class="w-100 h-100 p-4 p-xl-5 text-white" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);">
+                        <div class="col-12 col-lg-5">
+                            <div class="w-100 h-100 p-4 p-sm-5 p-xl-5 text-white" style="background: linear-gradient(135deg, #111827 0%, #1f2937 100%);">
                                 <div class="h-100 d-flex flex-column justify-content-between">
                                     <div>
                                         <h2 class="h3 fw-semibold mb-3">{{ __('Welcome Back') }}</h2>
@@ -32,10 +32,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-7">
-                            <div class="card-body p-4 p-md-5">
-                                <header class="mb-4">
-                                    <h1 class="h4 mb-1">{{ __('Login') }}</h1>
+                        <div class="col-12 col-lg-7 bg-white text-dark">
+                            <div class="card-body p-4 p-sm-5 p-lg-5">
+                                <header class="mb-4 text-center text-lg-start">
+                                    <h1 class="h4 fs-4 fs-sm-3 mb-2">{{ __('Login') }}</h1>
                                     <p class="text-muted mb-0">Enter your credentials to continue.</p>
                                 </header>
 
@@ -64,7 +64,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+                                    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2 mb-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="form-check-label" for="remember">
@@ -79,10 +79,16 @@
                                         @endif
                                     </div>
 
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary btn-lg">
+                                    <div class="d-grid d-sm-flex gap-2">
+                                        <button type="submit" class="btn auth-btn btn-lg flex-sm-fill">
                                             {{ __('Login') }}
                                         </button>
+
+                                        @if (Route::has('register'))
+                                            <a class="btn auth-btn-outline btn-lg flex-sm-fill" href="{{ route('register') }}">
+                                                {{ __('Register') }}
+                                            </a>
+                                        @endif
                                     </div>
                                 </form>
                             </div>

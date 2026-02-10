@@ -30,6 +30,8 @@ Route::prefix("admin")->name("admin.")->middleware('admin.auth')->group(function
     #Dashboard
     Route::prefix("dashboard")->name("dashboard.")->group(function () {
         Route::get("/", [DashboardController::class, "index"])->name("index");
+        Route::post("/generate-missing-images", [DashboardController::class, "generateMissingImages"])
+            ->name("generate_missing_images");
     });
     // Admin profile route
     Route::get('profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
